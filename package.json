@@ -1,7 +1,7 @@
 {
   "name": "gabum",
   "version": "0.0.0",
-  "description": "Refactoring of Gabum (Project Manager) with NodeJS ",
+  "description": "A simple project manager made with Node JS",
   "main": "index.js",
   "repository": "git@github.com:Galitan-dev/Gabum-V2.git",
   "author": "Galitan-dev <galitan.dev@gmail.com>",
