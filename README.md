@@ -1,4 +1,4 @@
-# Gabum [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
+# Gabum [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/Galitan-dev/Gabum/blob/main/LICENSE)
 
 A simple project manager made with Node JS. Currently in the form of CLI, soon in the form of an Electron application offering voice recognition.
 
@@ -75,4 +75,6 @@ Please adhere to this project's [Code of Conduct](https://github.com/Galitan-Dev
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+See in [LICENSE](https://github.com/Galitan-dev/Gabum/blob/main/LICENSE)
+
+© Galitan-dev 2022
