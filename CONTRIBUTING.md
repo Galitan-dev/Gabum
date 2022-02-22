@@ -149,7 +149,7 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/Galita
 
 - Then install the dependencies with `npm install` or `yarn`.
 - Now you can edit the code in the src folder.
-- When you want to test your modifications, run `npm run start` or `yarn start`.
+- When you want to test your modifications, run `npm run start` or `yarn -s start`.
 
 ### Improving The Documentation
 
