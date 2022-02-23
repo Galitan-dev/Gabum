@@ -22,13 +22,15 @@ import argvSync from './parseArgs';
 	}
 
 	if (!command) {
-		return console.error(
+		console.error(
 			chalk.red('Unknown command') +
 				', please refer to the help page ' +
 				chalk.grey('(gabum --help)') +
 				'.'
 		);
+		process.exit(1);
 	}
 
 	command.default(argv, args);
+	return 0;
 })();
