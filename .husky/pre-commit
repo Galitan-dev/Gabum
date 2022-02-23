@@ -1,4 +1,14 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-yarn lint
+echo "Formatting..."
+yarn -s format
+echo
+
+echo "Linting..."
+yarn -s lint
+echo
+
+echo "Testing..."
+yarn -s test
+echo
