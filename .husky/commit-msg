@@ -1,6 +1,0 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-echo "Linting Commit Message..."
-yarn -s commitlint --edit $1
-echo
