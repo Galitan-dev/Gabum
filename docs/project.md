@@ -3,7 +3,8 @@
 
 Project Management
 
-* [`gabum project create`](#gabum-project-create)
+- [`gabum project`](#gabum-project)
+  - [`gabum project create`](#gabum-project-create)
 
 ## `gabum project create`
 

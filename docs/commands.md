@@ -3,7 +3,8 @@
 
 list all the commands
 
-* [`gabum commands`](#gabum-commands)
+- [`gabum commands`](#gabum-commands)
+  - [`gabum commands`](#gabum-commands-1)
 
 ## `gabum commands`
 
