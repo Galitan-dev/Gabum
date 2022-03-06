@@ -21,7 +21,7 @@
     "@oclif/plugin-warn-if-update-available": "^2.0.4",
     "@oclif/plugin-which": "^2.1.0",
     "@types/debug": "^4.1.7",
-    "@types/mocha": "^9.0.0",
+    "@types/mocha": "^9.1.0",
     "@types/node": "^16.9.4",
     "@types/prompts": "^2.0.14",
     "@types/shelljs": "^0.8.11",
