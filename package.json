@@ -1,7 +1,7 @@
 {
   "name": "gabum",
   "description": "A simple project manager made with Node JS.",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "author": "Galitan-dev",
   "bin": {
     "gabum": "./bin/run"
@@ -12,9 +12,8 @@
     "@oclif/plugin-commands": "^2.1.0",
     "@oclif/plugin-help": "^5.1.11",
     "@oclif/plugin-not-found": "^2.3.1",
-    "@oclif/plugin-update": "^3.0.0",
-    "@oclif/plugin-warn-if-update-available": "^2.0.4",
     "@oclif/plugin-which": "^2.1.0",
+    "@sumwatshade/oclif-plugin-update": "^1.9.4",
     "conf-cli": "^0.1.9",
     "oclif-plugin-completion": "^0.6.0",
     "prompts": "^2.4.2",
@@ -59,8 +58,7 @@
     "plugins": [
       "@oclif/plugin-help",
       "@oclif/plugin-not-found",
-      "@oclif/plugin-update",
-      "@oclif/plugin-warn-if-update-available",
+      "@sumwatshade/oclif-plugin-update",
       "@oclif/plugin-which",
       "@oclif/plugin-commands",
       "oclif-plugin-completion",
