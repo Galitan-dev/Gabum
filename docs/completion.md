@@ -5,10 +5,9 @@ Generate shell completion script
 
 Run this command to see instructions for your shell.
 
-- [`gabum completion`](#gabum-completion)
-  - [`gabum completion`](#gabum-completion-1)
-  - [`gabum completion generate`](#gabum-completion-generate)
-  - [`gabum completion generate alias ALIAS`](#gabum-completion-generate-alias-alias)
+* [`gabum completion`](#gabum-completion)
+* [`gabum completion generate`](#gabum-completion-generate)
+* [`gabum completion generate alias ALIAS`](#gabum-completion-generate-alias-alias)
 
 ## `gabum completion`
 

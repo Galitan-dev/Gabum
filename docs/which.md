@@ -3,8 +3,7 @@
 
 Show which plugin a command is in.
 
-- [`gabum which`](#gabum-which)
-  - [`gabum which`](#gabum-which-1)
+* [`gabum which`](#gabum-which)
 
 ## `gabum which`
 
