@@ -44,7 +44,7 @@ $ npm install -g gabum
 $ gabum COMMAND
 running command...
 $ gabum (--version)
-gabum/0.1.6 darwin-x64 node-v16.14.0
+gabum/0.2.0 darwin-x64 node-v16.14.0
 $ gabum --help [COMMAND]
 USAGE
   $ gabum COMMAND
@@ -55,10 +55,9 @@ USAGE
 # Commands
 
 <!-- commands -->
-## Command Topics
+# Command Topics
 
 * [`gabum commands`](docs/commands.md) - list all the commands
-* [`gabum completion`](docs/completion.md) - Generate shell completion script
 * [`gabum conf`](docs/conf.md) - manage configuration
 * [`gabum help`](docs/help.md) - Display help for gabum.
 * [`gabum which`](docs/which.md) - Show which plugin a command is in.
