@@ -1,5 +1,15 @@
 # Gabum 
-[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/Galitan-dev/Gabum/blob/main/LICENSE)
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/Galitan-dev/Gabum/blob/main/LICENSE) 
+[![GitHub maintainer](https://img.shields.io/badge/maintainer-galitan--dev-informational)](https://github.com/galitan-dev)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/galitan-dev/gabum)
+![Lines of code](https://img.shields.io/tokei/lines/github/galitan-dev/gabum)
+
+![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/galitan-dev/gabum)
+![npm](https://img.shields.io/npm/dt/gabum)
+![npm](https://img.shields.io/npm/v/gabum)
+
+
+
 
 A simple project manager made with Node JS. Currently in the form of CLI, soon in the form of an Electron application offering voice recognition.
 
