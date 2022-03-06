@@ -20,6 +20,7 @@ A simple project manager made with Node JS. Currently in the form of CLI, soon i
 - [Demo](#demo)
 - [Features](#features)
 - [Usage](#usage)
+- [Commands](#commands)
 - [Tech Stack](#tech-stack)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
@@ -42,13 +43,27 @@ $ npm install -g gabum
 $ gabum COMMAND
 running command...
 $ gabum (--version)
-gabum/0.1.5 darwin-x64 node-v16.14.0
+gabum/0.1.6 darwin-x64 node-v16.14.0
 $ gabum --help [COMMAND]
 USAGE
   $ gabum COMMAND
 ...
 ```
 <!-- usagestop -->
+
+# Commands
+
+<!-- commands -->
+# Command Topics
+
+* [`gabum commands`](docs/commands.md) - list all the commands
+* [`gabum completion`](docs/completion.md) - Generate shell completion script
+* [`gabum conf`](docs/conf.md) - manage configuration
+* [`gabum help`](docs/help.md) - Display help for gabum.
+* [`gabum project`](docs/project.md) - Project Management
+* [`gabum which`](docs/which.md) - Show which plugin a command is in.
+
+<!-- commandsstop -->
 
 # Tech Stack
 
