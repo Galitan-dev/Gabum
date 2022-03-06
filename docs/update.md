@@ -1,43 +1,27 @@
 `gabum update`
 ==============
 
-update the gabum CLI
+Updates the gabum CLI. This will check for the latest version available on the requested channel and fetch it from remote
 
 * [`gabum update [CHANNEL]`](#gabum-update-channel)
 
 ## `gabum update [CHANNEL]`
 
-update the gabum CLI
+Updates the gabum CLI. This will check for the latest version available on the requested channel and fetch it from remote
 
 ```
 USAGE
-  $ gabum update [CHANNEL] [-a] [-v <value> | -i] [--force]
+  $ gabum update [CHANNEL] [--from-local]
+
+ARGUMENTS
+  CHANNEL  Specify a channel (ex: stable,alpha,beta,next). An error will be thrown if this channel is invalid.
 
 FLAGS
-  -a, --available        Install a specific version.
-  -i, --interactive      Interactively select version to install. This is ignored if a channel is provided.
-  -v, --version=<value>  Install a specific version.
-  --force                Force a re-download of the requested version.
+  --from-local  interactively choose an already installed version
 
 DESCRIPTION
-  update the gabum CLI
-
-EXAMPLES
-  Update to the stable channel:
-
-    $ gabum update stable
-
-  Update to a specific version:
-
-    $ gabum update --version 1.0.0
-
-  Interactively select version:
-
-    $ gabum update --interactive
-
-  See available versions:
-
-    $ gabum update --available
+  Updates the gabum CLI. This will check for the latest version available on the requested channel and fetch it from
+  remote
 ```
 
-_See code: [@oclif/plugin-update](https://github.com/oclif/plugin-update/blob/v3.0.0/src/commands/update.ts)_
+_See code: [@sumwatshade/oclif-plugin-update](https://github.com/sumwatshade/plugin-update/blob/v1.9.4/src/commands/update.ts)_
