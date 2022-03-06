@@ -1,7 +1,7 @@
 {
   "name": "gabum",
   "description": "A simple project manager made with Node JS.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "Galitan-dev",
   "bin": {
     "gabum": "./bin/run"
