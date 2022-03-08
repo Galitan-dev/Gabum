@@ -5,17 +5,20 @@ import * as path from 'node:path';
 import { prompt } from 'prompts';
 import * as licenses from 'spdx-license-list';
 import { PromptObject } from '../../types/prompts';
+
 const config = new Conf();
 
 export default class ProjectCreate extends Command {
 	static description = 'Create a new project';
-	static aliases = ['create']
-	
+	static aliases = ['create'];
+
 	static examples = ['<%= config.bin %> <%= command.id %>'];
-	
+
 	public async run(): Promise<void> {
 		const homedir = this.config.home;
-		const projectDir = <string>config.get('project_dir', path.join(homedir, 'Documents/Development'));
+		const projectDir = <string>(
+			config.get('project_dir', path.join(homedir, 'Documents/Development'))
+		);
 
 		const questions: PromptObject[] = [
 			{
@@ -34,17 +37,15 @@ export default class ProjectCreate extends Command {
 				onRender(color) {
 					if (!this._value) return;
 
-					const exists = fs.existsSync(
-						path.join(projectDir, this._value),
-					);
-						
+					const exists = fs.existsSync(path.join(projectDir, this._value));
+
 					this.rendered = (exists ? color.red : color.green)(
-						this.rendered?.match(/[\s"#%/<>|]+([^\s"#%/<>|]+)/g) ?
-							this.rendered
-								?.replace(/(["#%/<>|])+/g, color.red('$1'))
-								.replace(/\s+(\S+)/g, color.grey('-') + '$1')
-								.replace(/\s+/g, '') :
-							this.rendered,
+						this.rendered?.match(/[\s"#%/<>|]+([^\s"#%/<>|]+)/g)
+							? this.rendered
+									?.replace(/(["#%/<>|])+/g, color.red('$1'))
+									.replace(/\s+(\S+)/g, color.grey('-') + '$1')
+									.replace(/\s+/g, '')
+							: this.rendered
 					);
 				},
 				format(input) {
@@ -80,13 +81,34 @@ export default class ProjectCreate extends Command {
 				message: 'Project Type',
 				initial: <string>config.get('default-project-type', 'simple'),
 				choices: [
-					{title: 'API', value: 'api'},
-					{title: 'Blank', value: 'blank'},
-					{title: 'CLI', value: 'cli'},
-					{title: 'Discord Bot', value: 'discord'},
-					{title: 'Simple', value: 'simple'},
-					{title: 'Web App', value: 'webapp'},
-					{title: 'Website', value: 'website'},
+					{
+						title: 'API',
+						value: 'api',
+					},
+					{
+						title: 'Blank',
+						value: 'blank',
+					},
+					{
+						title: 'CLI',
+						value: 'cli',
+					},
+					{
+						title: 'Discord Bot',
+						value: 'discord',
+					},
+					{
+						title: 'Simple',
+						value: 'simple',
+					},
+					{
+						title: 'Web App',
+						value: 'webapp',
+					},
+					{
+						title: 'Website',
+						value: 'website',
+					},
 				],
 			},
 			{
@@ -95,11 +117,26 @@ export default class ProjectCreate extends Command {
 				message: 'Project Language',
 				initial: <string>config.get('default-project-language', 'js'),
 				choices: [
-					{title: 'JavaScript', value: 'js'},
-					{title: 'TypeScript', value: 'ts'},
-					{title: 'Web (HTML, CSS, JS)', value: 'web'},
-					{title: 'Rust', value: 'rs'},
-					{title: 'Other', value: 'other'},
+					{
+						title: 'JavaScript',
+						value: 'js',
+					},
+					{
+						title: 'TypeScript',
+						value: 'ts',
+					},
+					{
+						title: 'Web (HTML, CSS, JS)',
+						value: 'web',
+					},
+					{
+						title: 'Rust',
+						value: 'rs',
+					},
+					{
+						title: 'Other',
+						value: 'other',
+					},
 				],
 			},
 			{
@@ -107,15 +144,14 @@ export default class ProjectCreate extends Command {
 				name: 'license',
 				message: 'Project License',
 				initial: <string>config.get('default-project-license', 'MIT License'),
-				choices: Object.values(licenses).map(l => ({
+				choices: Object.values(licenses).map((l) => ({
 					title: l.name,
 					value: l,
 				})),
 			},
 		];
-				
+
 		const answers = await prompt(questions);
 		this.log(answers);
 	}
 }
-		

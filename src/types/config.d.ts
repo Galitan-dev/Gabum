@@ -1,11 +1,11 @@
-export interface DefaultProjectSettings {
-  private: boolean;
-  type: string;
-  language: string;
-  license: string;
+declare interface DefaultProjectSettings {
+	private: boolean;
+	type: string;
+	language: string;
+	license: string;
 }
 
-export interface Configuration {
-  directory: string;
-  defaultProjectSettings: DefaultProjectSettings;
+declare interface Configuration {
+	directory: string;
+	defaultProjectSettings: DefaultProjectSettings;
 }
