@@ -9,7 +9,7 @@
   ],
   "rules": {
     "eqeqeq": "error",
-    "no-console": "warn",
+    "no-console": "off", // Let me do what I want lol
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/no-unused-vars": "warn",
     "prettier/prettier": [
