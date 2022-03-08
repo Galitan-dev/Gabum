@@ -13,16 +13,20 @@
 		"@oclif/plugin-help": "^5.1.11",
 		"@oclif/plugin-not-found": "^2.3.1",
 		"@oclif/plugin-which": "^2.1.0",
+		"adm-zip": "^0.5.9",
 		"conf-cli": "^0.1.9",
 		"detect-package-manager": "^2.0.1",
 		"prompts": "^2.4.2",
 		"shelljs": "^0.8.5",
-		"spdx-license-list": "^6.4.0"
+		"spdx-license-list": "^6.4.0",
+		"superagent": "^7.1.1"
 	},
 	"devDependencies": {
+		"@types/adm-zip": "^0.4.34",
 		"@types/node": "^16.9.4",
 		"@types/prompts": "^2.0.14",
 		"@types/shelljs": "^0.8.11",
+		"@types/superagent": "^4.1.15",
 		"@typescript-eslint/eslint-plugin": "^5.14.0",
 		"@typescript-eslint/parser": "^5.14.0",
 		"eslint": "^8.10.0",
