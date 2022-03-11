@@ -7,8 +7,8 @@
  * @param {string} infos.language
  * @param {string} infos.license
  * @returns {{title: string, task: () => void | Promise<void>}}
- */
-export default function (infos) {
+*/
+module.exports = function (infos) {
     return [
         {
             title: 'Generating License File',
