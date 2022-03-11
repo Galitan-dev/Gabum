@@ -1,5 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
 class ProgressBar {
     constructor(format) {
         this.current = 0;
@@ -14,10 +14,8 @@ class ProgressBar {
     }
     update(n) {
         this.complete = n >= 100;
-        if (this.complete)
-            this.current = 100;
-        else
-            this.current = n;
+        if (this.complete) this.current = 100;
+        else this.current = n;
         this.lastBump = Date.now();
     }
     render() {
@@ -31,28 +29,34 @@ class ProgressBar {
     makeBar() {
         // Made by Chancago at https://github.com/Changaco/unicode-progress-bars
         const bar_style = '▁▂▃▄▅▆▇█';
-        let d, full, m, middle, r, rest, x, min_delta = Number.POSITIVE_INFINITY, p = this.current;
-        const full_symbol = bar_style[bar_style.length - 1], n = bar_style.length - 1;
-        if (p === 100)
-            return new Array(30).fill(full_symbol).join('');
+        let d,
+            full,
+            m,
+            middle,
+            r,
+            rest,
+            x,
+            min_delta = Number.POSITIVE_INFINITY,
+            p = this.current;
+        const full_symbol = bar_style[bar_style.length - 1],
+            n = bar_style.length - 1;
+        if (p === 100) return new Array(30).fill(full_symbol).join('');
         p = p / 100;
         for (let i = 30; i >= 30; i--) {
             x = p * i;
             full = Math.floor(x);
             rest = x - full;
             middle = Math.floor(rest * n);
-            if (p !== 0 && full === 0 && middle === 0)
-                middle = 1;
+            if (p !== 0 && full === 0 && middle === 0) middle = 1;
             d = Math.abs(p - (full + middle / n) / i) * 100;
             if (d < min_delta) {
                 min_delta = d;
                 m = bar_style[middle];
-                if (full === i)
-                    m = '';
+                if (full === i) m = '';
                 r =
                     new Array(full).fill(full_symbol).join('') +
-                        m +
-                        new Array(i - full - 1).fill(bar_style[0]).join('');
+                    m +
+                    new Array(i - full - 1).fill(bar_style[0]).join('');
             }
         }
         return r;
