@@ -29,12 +29,10 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
                                     'downloading <bar> <percent> | time left: <timeLeft>'
                                 );
 
-                                let len = 0,
-                                    encoding = 'utf8';
+                                let len = 0;
                                 const chunks = [];
                                 const writeStream = new Writable();
-                                writeStream._write = function (chunk, enc, next) {
-                                    encoding = enc || encoding;
+                                writeStream._write = function (chunk, _, next) {
                                     chunks.push(chunk);
                                     bar.tick((chunk.length / len) * 100);
                                     observer.next(bar.render());
@@ -51,8 +49,8 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
                                     })
                                     .pipe(writeStream)
                                     .on('finish', () => {
-                                        licenseModel = Buffer.concat(chunks).toString(encoding);
-                                        setTimeout(() => observer.complete(), 2000);
+                                        licenseModel = Buffer.concat(chunks).toString('utf8');
+                                        observer.complete();
                                     });
                             }),
                     },
