@@ -52,7 +52,7 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
                                     .pipe(writeStream)
                                     .on('finish', () => {
                                         licenseModel = Buffer.concat(chunks).toString(encoding);
-                                        observer.complete();
+                                        setTimeout(() => observer.complete(), 2000);
                                     });
                             }),
                     },
