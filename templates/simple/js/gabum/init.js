@@ -41,6 +41,7 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
 
                                 request
                                     .get(infos.license.url)
+                                    .set('user-agent', 'node.js')
                                     .on('error', (err) => {
                                         throw err;
                                     })
