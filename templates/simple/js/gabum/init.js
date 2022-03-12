@@ -19,56 +19,57 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
     return new Listr([
         {
             title: 'Creating License File',
-            task: new Listr([
-                {
-                    title: 'Downloading license model',
-                    task: () =>
-                        new Observable((observer) => {
-                            const bar = new ProgressBar(
-                                'downloading <bar> <percent> | time left: <timeLeft>'
-                            );
+            task: () =>
+                new Listr([
+                    {
+                        title: 'Downloading license model',
+                        task: () =>
+                            new Observable((observer) => {
+                                const bar = new ProgressBar(
+                                    'downloading <bar> <percent> | time left: <timeLeft>'
+                                );
 
-                            let len = 0,
-                                encoding = 'utf8';
-                            const chunks = [];
-                            const writeStream = new Writable();
-                            writeStream._write = function (chunk, enc, next) {
-                                encoding = enc || encoding;
-                                chunks.push(chunk);
-                                bar.tick((chunk.length / len) * 100);
-                                observer.next(bar.render());
-                                next();
-                            };
+                                let len = 0,
+                                    encoding = 'utf8';
+                                const chunks = [];
+                                const writeStream = new Writable();
+                                writeStream._write = function (chunk, enc, next) {
+                                    encoding = enc || encoding;
+                                    chunks.push(chunk);
+                                    bar.tick((chunk.length / len) * 100);
+                                    observer.next(bar.render());
+                                    next();
+                                };
 
-                            request
-                                .get(infos.license.url)
-                                .on('error', (err) => {
-                                    throw err;
-                                })
-                                .on('response', (res) => {
-                                    len = parseInt(res.headers['content-length'] || 0);
-                                })
-                                .pipe(writeStream)
-                                .on('finish', () => {
-                                    licenseModel = Buffer.concat(chunks).toString(encoding);
-                                    observer.complete();
-                                });
-                        }),
-                },
-                {
-                    title: 'Generating license',
-                    task() {
-                        license = licenseModel;
-                        //.replace(...)
+                                request
+                                    .get(infos.license.url)
+                                    .on('error', (err) => {
+                                        throw err;
+                                    })
+                                    .on('response', (res) => {
+                                        len = parseInt(res.headers['content-length'] || 0);
+                                    })
+                                    .pipe(writeStream)
+                                    .on('finish', () => {
+                                        licenseModel = Buffer.concat(chunks).toString(encoding);
+                                        observer.complete();
+                                    });
+                            }),
                     },
-                },
-                {
-                    title: 'Saving license',
-                    task() {
-                        writeFileSync(PATH.join(path, 'LICENSE'), license, 'utf8');
+                    {
+                        title: 'Generating license',
+                        task() {
+                            license = licenseModel;
+                            //.replace(...)
+                        },
                     },
-                },
-            ]),
+                    {
+                        title: 'Saving license',
+                        task() {
+                            writeFileSync(PATH.join(path, 'LICENSE'), license, 'utf8');
+                        },
+                    },
+                ]),
         },
     ]);
 };
