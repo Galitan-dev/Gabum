@@ -1,7 +1,3 @@
-const request = require('superagent');
-const Listr = require('listr');
-const { Observable } = require('rxjs');
-const ProgressBar = require('./progress');
 const { Writable } = require('stream');
 const { writeFileSync } = require('fs');
 const PATH = require('path');
@@ -17,7 +13,7 @@ const PATH = require('path');
  * @param {string} path
  * @returns {Listr}
  */
-module.exports = function (infos, path) {
+module.exports = function (infos, path, { Listr, Observable, ProgressBar, request }) {
     let licenseModel, license;
 
     return new Listr([
