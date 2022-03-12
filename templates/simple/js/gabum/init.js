@@ -14,7 +14,9 @@ const PATH = require('path');
  * @returns {Listr}
  */
 module.exports = function (infos, path, { Listr, Observable, ProgressBar, request }) {
-    let licenseModel, license;
+    /** @type {license} */
+    let licenseModel;
+    let license;
 
     return new Listr([
         {
@@ -50,7 +52,9 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
                                     })
                                     .pipe(writeStream)
                                     .on('finish', () => {
-                                        licenseModel = Buffer.concat(chunks).toString('utf8');
+                                        licenseModel = JSON.parse(
+                                            Buffer.concat(chunks).toString('utf8')
+                                        );
                                         observer.complete();
                                     });
                             }),
@@ -58,13 +62,17 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
                     {
                         title: 'Generating license',
                         task() {
-                            license = licenseModel;
+                            license = licenseModel.body;
                             //.replace(...)
                         },
                     },
                     {
                         title: 'Saving license',
                         task() {
+                            writeFileSync(
+                                PATH.join(path, 'gabum/license.json'),
+                                JSON.stringify(licenseModel, null, 4)
+                            );
                             writeFileSync(PATH.join(path, 'LICENSE'), license, 'utf8');
                         },
                     },
@@ -72,3 +80,19 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
         },
     ]);
 };
+
+/**
+ * @typedef license
+ * @type {object}
+ * @property {string} key
+ * @property {string} name
+ * @property {string} spdx_id
+ * @property {string} node_id
+ * @property {string} html_url
+ * @property {string} description
+ * @property {string} implementation
+ * @property {string[]} permissions
+ * @property {string[]} conditions
+ * @property {string[]} limitations
+ * @property {string} body
+ */
