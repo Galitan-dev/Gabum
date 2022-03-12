@@ -22,7 +22,7 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
             task: new Listr([
                 {
                     title: 'Downloading license model',
-                    tasks: () =>
+                    task: () =>
                         new Observable((observer) => {
                             const bar = new ProgressBar(
                                 'downloading <bar> <percent> | time left: <timeLeft>'
