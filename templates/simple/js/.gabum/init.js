@@ -1,4 +1,4 @@
-const { writeFileSync, rmSync, renameSync } = require('fs');
+const { writeFileSync, rmSync, renameSync, readFileSync } = require('fs');
 const PATH = require('path');
 const { Writable } = require('stream');
 
@@ -123,6 +123,18 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
                                 PATH.join(path, 'BLANK_README.md'),
                                 PATH.join(path, 'README.md')
                             );
+                        },
+                    },
+                    {
+                        title: 'Editing ReadMe',
+                        task() {
+                            const readmeTemplate = readFileSync(PATH.join(path, 'README.md'), 'utf-8');
+                            const readme = readmeTemplate
+                                .replace(/github_username/g, infos.author)
+                                .replace(/repo_name/g, infos.name)
+                                .replace(/project_title/g, infos.name)
+                                .replace(/project_description/g, infos.description)
+                            writeFileSync(PATH.join(path, 'README.md'), readme, 'utf-8');
                         },
                     },
                 ]),
