@@ -117,7 +117,7 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
                     {
                         title: 'Moving files',
                         task() {
-                            rmSync(PATH.join(path, 'LICENCE.txt'));
+                            rmSync(PATH.join(path, 'LICENSE.txt'));
                             rmSync(PATH.join(path, 'README.md'));
                             renameSync(
                                 PATH.join(path, 'BLANK_README.md'),
