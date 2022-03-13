@@ -1,0 +1,70 @@
+[
+    {
+        "id": "agpl3-header",
+        "name": "GNU Affero General Public 3.0 Header"
+    },
+    {
+        "id": "agpl3",
+        "name": "GNU Affero General Public License 3.0"
+    },
+    {
+        "id": "apache-header",
+        "name": "Apache License 2.0 Header"
+    },
+    {
+        "id": "apache",
+        "name": "Apache License 2.0"
+    },
+    {
+        "id": "bsd2",
+        "name": "BSD 2-Clause \"Simplified\" License"
+    },
+    {
+        "id": "bsd3",
+        "name": "BSD 3-Clause \"New\" or \"Revised\" License"
+    },
+    {
+        "id": "cc0-header",
+        "name": "Creative Commons Zero v1.0 Universal"
+    },
+    {
+        "id": "cc0",
+        "name": "Creative Commons Zero v1.0 Universal Header"
+    },
+    {
+        "id": "epl",
+        "name": "Eclipse Public License 2.0"
+    },
+    {
+        "id": "gpl2",
+        "name": "GNU General Public License 2.0"
+    },
+    {
+        "id": "gpl3-header",
+        "name": "GNU General Public License 3.0 Header"
+    },
+    {
+        "id": "gpl3",
+        "name": "GNU General Public License 3.0"
+    },
+    {
+        "id": "lgpl",
+        "name": "GNU Lesser General Public License 2.1"
+    },
+    {
+        "id": "mit",
+        "name": "MIT License"
+    },
+    {
+        "id": "mpl-header",
+        "name": "Mozilla Public License 2.0 Header"
+    },
+    {
+        "id": "mpl",
+        "name": "Mozilla Public License 2.0"
+    },
+    {
+        "id": "unlicense",
+        "name": "The Unlicense"
+    }
+]

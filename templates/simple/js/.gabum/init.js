@@ -119,7 +119,6 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
                                         });
                                     }),
                                 options: {
-                                    showTimer: true,
                                     bottomBar: true,
                                 },
                             },

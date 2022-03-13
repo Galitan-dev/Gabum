@@ -35,6 +35,18 @@
     "node_modules",
     "build",
     "dist",
-    "public"
+    "public",
+    "bin"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.js",
+        "*.jsx"
+      ],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    }
   ]
 }

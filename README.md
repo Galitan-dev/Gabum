@@ -44,7 +44,7 @@ $ npm install -g gabum
 $ gabum COMMAND
 running command...
 $ gabum (--version)
-gabum/0.2.1 darwin-x64 node-v16.14.0
+gabum/1.0.0 darwin-x64 node-v16.14.0
 $ gabum --help [COMMAND]
 USAGE
   $ gabum COMMAND
@@ -61,6 +61,7 @@ USAGE
 * [`gabum conf`](docs/conf.md) - manage configuration
 * [`gabum help`](docs/help.md) - Display help for gabum.
 * [`gabum project`](docs/project.md) - Project Management
+* [`gabum test`](docs/test.md) - test command
 * [`gabum upgrade`](docs/upgrade.md) - upgrade the package to the last version
 * [`gabum which`](docs/which.md) - Show which plugin a command is in.
 

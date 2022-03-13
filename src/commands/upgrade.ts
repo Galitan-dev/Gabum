@@ -1,6 +1,6 @@
 import { Command, Flags } from '@oclif/core';
-import * as pm from 'detect-package-manager';
-import * as shell from 'shelljs';
+import pm from 'detect-package-manager';
+import shell from 'shelljs';
 
 export default class Upgrade extends Command {
     static description = 'upgrade the package to the last version';
