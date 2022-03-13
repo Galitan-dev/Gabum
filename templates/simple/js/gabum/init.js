@@ -5,6 +5,7 @@ const PATH = require('path');
 /**
  * @param {object} infos
  * @param {string} infos.name
+ * @param {string} infos.author
  * @param {string} infos.description
  * @param {boolean} infos.boolean
  * @param {string} infos.type
@@ -62,8 +63,13 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
                     {
                         title: 'Generating license',
                         task() {
-                            license = licenseModel.body;
-                            //.replace(...)
+                            license = licenseModel.body
+                                .replace(
+                                    /[<[{]?(author|fullname|name of author)[>\]}]?/gi,
+                                    infos.author
+                                )
+                                .replace(/[<[{]?(year)[>\]}]?/gi, new Date().getFullYear())
+                                .replace(/[<[{]?(project|name of project)[>\]}]?/gi, project.name);
                         },
                     },
                     {
@@ -95,4 +101,5 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
  * @property {string[]} conditions
  * @property {string[]} limitations
  * @property {string} body
+ * @property {boolean} featured
  */
