@@ -69,7 +69,7 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
                                     infos.author
                                 )
                                 .replace(/[<[{]?(year)[>\]}]?/gi, new Date().getFullYear())
-                                .replace(/[<[{]?(project|name of project)[>\]}]?/gi, project.name);
+                                .replace(/[<[{]?(project|name of project)[>\]}]?/gi, infos.name);
                         },
                     },
                     {
