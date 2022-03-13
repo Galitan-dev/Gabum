@@ -1,3 +1,4 @@
+const { spawn } = require('child_process');
 const { writeFileSync, rmSync, renameSync, readFileSync } = require('fs');
 const PATH = require('path');
 const { Writable } = require('stream');
@@ -7,7 +8,7 @@ const { Writable } = require('stream');
  * @param {string} infos.name
  * @param {string} infos.author
  * @param {string} infos.description
- * @param {boolean} infos.boolean
+ * @param {boolean} infos.private
  * @param {string} infos.type
  * @param {string} infos.language
  * @param {object} infos.license
@@ -128,19 +129,67 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
                     {
                         title: 'Editing ReadMe',
                         task() {
-                            const readmeTemplate = readFileSync(PATH.join(path, 'README.md'), 'utf-8');
+                            const readmeTemplate = readFileSync(
+                                PATH.join(path, 'README.md'),
+                                'utf-8'
+                            );
                             const readme = readmeTemplate
-                                .replace("`github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`", "`twitter_handle`, `linkedin_username`, `email_client`, `email`")
+                                .replace(
+                                    '`github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`',
+                                    '`twitter_handle`, `linkedin_username`, `email_client`, `email`'
+                                )
                                 .replace(/github_username/g, infos.author)
                                 .replace(/repo_name/g, infos.name)
                                 .replace(/project_title/g, infos.name)
                                 .replace(/project_description/g, infos.description)
-                                .replace(/MIT/g, infos.license.name)
+                                .replace(/MIT License/g, infos.license.name)
                                 .replace(/LICENSE\.txt/g, 'LICENSE')
-                                .replace(/Your Name/, infos.author)
+                                .replace(/Your Name/, infos.author);
 
                             writeFileSync(PATH.join(path, 'README.md'), readme, 'utf-8');
                         },
+                    },
+                ]),
+        },
+        {
+            title: 'Preparing Project',
+            task: () =>
+                new Listr([
+                    {
+                        title: 'Editing package.json',
+                        task() {
+                            const packageTemplate = readFileSync(
+                                PATH.join(path, 'README.md'),
+                                'utf-8'
+                            );
+                            const package = packageTemplate
+                                .replace(/--author--/g, infos.author)
+                                .replace(/--project--/g, infos.name)
+                                .replace(/--description--/g, infos.description)
+                                .replace(/--license--/g, infos.license.spdx)
+                                .replace(/--private--/g, infos.private);
+
+                            writeFileSync(PATH.join(path, 'package.json'), package, 'utf-8');
+                        },
+                    },
+                    {
+                        title: 'Installing project',
+                        task: () =>
+                            new Observable((observer) => {
+                                spawn('yarn', { cwd: path })
+                                    .on('message', (msg) => observer.next(msg))
+                                    .on('error', (msg) => observer.error(msg))
+                                    .on('close', (code) =>
+                                        code !== 0
+                                            ? msg.error(`Exited with code ${code}`)
+                                            : observer.complete()
+                                    )
+                                    .on('exit', (code) =>
+                                        code !== 0
+                                            ? msg.error(`Exited with code ${code}`)
+                                            : observer.complete()
+                                    );
+                            }),
                     },
                 ]),
         },
