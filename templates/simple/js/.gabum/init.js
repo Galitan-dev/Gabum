@@ -1,5 +1,6 @@
 const { writeFileSync, rmSync, renameSync } = require('fs');
 const PATH = require('path');
+const { Writable } = require('stream');
 
 /**
  * @param {object} infos
