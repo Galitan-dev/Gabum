@@ -21,12 +21,12 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
     /** @type {license} */
     let licenseModel, license, templateArchive;
 
-    return new Listr(
-        [
-            {
-                title: 'Creating License File',
-                task: () =>
-                    new Listr([
+    return new Listr([
+        {
+            title: 'Creating License File',
+            task: () =>
+                new Listr(
+                    [
                         {
                             title: 'Downloading license model',
                             task: () =>
@@ -79,12 +79,19 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
                                 writeFileSync(PATH.join(path, 'LICENSE'), license, 'utf8');
                             },
                         },
-                    ]),
-            },
-            {
-                title: 'Generating Community Standards',
-                task: () =>
-                    new Listr([
+                    ],
+                    {
+                        rendererOptions: {
+                            collapse: true,
+                        },
+                    }
+                ),
+        },
+        {
+            title: 'Generating Community Standards',
+            task: () =>
+                new Listr(
+                    [
                         {
                             title: 'Downloading template archive',
                             task: () =>
@@ -153,12 +160,19 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
                                 writeFileSync(PATH.join(path, 'README.md'), readme, 'utf-8');
                             },
                         },
-                    ]),
-            },
-            {
-                title: 'Preparing Project',
-                task: () =>
-                    new Listr([
+                    ],
+                    {
+                        rendererOptions: {
+                            collapse: true,
+                        },
+                    }
+                ),
+        },
+        {
+            title: 'Preparing Project',
+            task: () =>
+                new Listr(
+                    [
                         {
                             title: 'Editing package.json',
                             task() {
@@ -195,15 +209,15 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
                                         );
                                 }),
                         },
-                    ]),
-            },
-        ],
-        {
-            rendererOptions: {
-                collapse: true,
-            },
-        }
-    );
+                    ],
+                    {
+                        rendererOptions: {
+                            collapse: true,
+                        },
+                    }
+                ),
+        },
+    ]);
 };
 
 /**
