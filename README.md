@@ -8,9 +8,6 @@
 ![npm](https://img.shields.io/npm/dt/gabum)
 ![npm](https://img.shields.io/npm/v/gabum)
 
-
-
-
 A simple project manager made with Node JS. Currently in the form of CLI, soon in the form of an Electron application offering voice recognition.
 
 # Summary
@@ -69,27 +66,19 @@ USAGE
 
 # Tech Stack
 
-**CLI:** TypeScript, NodeJS
-
-**Config:** Yaml
+**CLI:** Oclif, TypeScript, NodeJS
 
 # Roadmap
 
 May change in the future
 
-- Long Start
-
-- Open Project
-
-- Default Settings
-
-- Quick Start
-
-- Templates
-
-- Electron App
-
-- Voice Recognition
+ - [x] Project Creation
+ - [ ] Open Project
+ - [ ] Configuration
+ - [ ] Quick Start
+ - [ ] More Templates
+ - [ ] Electron App
+ - [ ] Voice Recognition
 
 # Contributing
 
