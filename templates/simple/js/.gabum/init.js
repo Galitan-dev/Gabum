@@ -159,7 +159,7 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
                         title: 'Editing package.json',
                         task() {
                             const packageTemplate = readFileSync(
-                                PATH.join(path, 'README.md'),
+                                PATH.join(path, 'package.json'),
                                 'utf-8'
                             );
                             const package = packageTemplate
@@ -181,12 +181,12 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
                                     .on('error', (msg) => observer.error(msg))
                                     .on('close', (code) =>
                                         code !== 0
-                                            ? msg.error(`Exited with code ${code}`)
+                                            ? observer.error(`Exited with code ${code}`)
                                             : observer.complete()
                                     )
                                     .on('exit', (code) =>
                                         code !== 0
-                                            ? msg.error(`Exited with code ${code}`)
+                                            ? observer.error(`Exited with code ${code}`)
                                             : observer.complete()
                                     );
                             }),
