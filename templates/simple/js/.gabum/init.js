@@ -91,7 +91,6 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
                                     'downloading <bar> <percent> | time left: <timeLeft>'
                                 );
 
-                                shell.mkdir('-p', project.path);
                                 zip.download(
                                     'https://github.com/othneildrew/Best-README-Template/archive/master.zip',
                                     bar
