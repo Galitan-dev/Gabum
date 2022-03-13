@@ -1,5 +1,4 @@
-const { Writable } = require('stream');
-const { writeFileSync } = require('fs');
+const { writeFileSync, rmSync, renameSync } = require('fs');
 const PATH = require('path');
 
 /**
@@ -112,6 +111,17 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
                         title: 'Extracting the template from the archive',
                         async task() {
                             await zip.extract('', templateArchive, path);
+                        },
+                    },
+                    {
+                        title: 'Moving files',
+                        task() {
+                            rmSync(PATH.join(path, 'LICENCE.txt'));
+                            rmSync(PATH.join(path, 'README.md'));
+                            renameSync(
+                                PATH.join(path, 'BLANK_README.md'),
+                                PATH.join(path, 'README.md')
+                            );
                         },
                     },
                 ]),
