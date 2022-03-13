@@ -41,7 +41,7 @@ $ npm install -g gabum
 $ gabum COMMAND
 running command...
 $ gabum (--version)
-gabum/1.0.1 darwin-x64 node-v16.14.0
+gabum/1.0.2 darwin-x64 node-v16.14.0
 $ gabum --help [COMMAND]
 USAGE
   $ gabum COMMAND

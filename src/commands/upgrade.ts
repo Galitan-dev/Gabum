@@ -1,5 +1,5 @@
 import { Command, Flags } from '@oclif/core';
-import pm from 'detect-package-manager';
+import * as pm from 'detect-package-manager';
 import shell from 'shelljs';
 
 export default class Upgrade extends Command {
