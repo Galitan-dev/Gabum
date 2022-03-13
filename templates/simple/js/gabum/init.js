@@ -11,6 +11,8 @@ const PATH = require('path');
  * @param {string} infos.type
  * @param {string} infos.language
  * @param {object} infos.license
+ * @param {string} infos.license.id
+ * @param {string} infos.license.name
  * @param {string} path
  * @returns {Listr}
  */
@@ -43,7 +45,9 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
                                 };
 
                                 request
-                                    .get(infos.license.url)
+                                    .get(
+                                        `https://raw.githubusercontent.com/licenses/license-templates/master/templates/${infos.license.id}.txt`
+                                    )
                                     .set('user-agent', 'node.js')
                                     .on('error', (err) => {
                                         throw err;
@@ -53,9 +57,8 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
                                     })
                                     .pipe(writeStream)
                                     .on('finish', () => {
-                                        licenseModel = JSON.parse(
-                                            Buffer.concat(chunks).toString('utf8')
-                                        );
+                                        licenseModel = Buffer.concat(chunks).toString('utf8');
+
                                         observer.complete();
                                     });
                             }),
@@ -63,26 +66,25 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
                     {
                         title: 'Generating license',
                         task() {
-                            license = licenseModel.body
-                                .replace(
-                                    /[<[{]?(author|fullname|name of author)[>\]}]?/gi,
-                                    infos.author
-                                )
-                                .replace(/[<[{]?(year)[>\]}]?/gi, new Date().getFullYear())
-                                .replace(/[<[{]?(project|name of project)[>\]}]?/gi, infos.name);
+                            license = licenseModel
+                                .replace(/{{ organization }}/g, infos.author)
+                                .replace(/{{ year }}/g, new Date().getFullYear())
+                                .replace(/{{ project }}/g, infos.name);
                         },
                     },
                     {
                         title: 'Saving license',
                         task() {
-                            writeFileSync(
-                                PATH.join(path, 'gabum/license.json'),
-                                JSON.stringify(licenseModel, null, 4)
-                            );
                             writeFileSync(PATH.join(path, 'LICENSE'), license, 'utf8');
                         },
                     },
                 ]),
+        },
+        {
+            title: 'Generating ReadMe file',
+            task() {
+                return;
+            },
         },
     ]);
 };
