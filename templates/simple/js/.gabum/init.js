@@ -16,10 +16,9 @@ const PATH = require('path');
  * @param {string} path
  * @returns {Listr}
  */
-module.exports = function (infos, path, { Listr, Observable, ProgressBar, request }) {
+module.exports = function (infos, path, { Listr, Observable, ProgressBar, request, zip }) {
     /** @type {license} */
-    let licenseModel;
-    let license;
+    let licenseModel, license, templateArchive;
 
     return new Listr([
         {
@@ -81,10 +80,42 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
                 ]),
         },
         {
-            title: 'Generating ReadMe file',
-            task() {
-                return;
-            },
+            title: 'Generating Community Standards',
+            task: () =>
+                new Listr([
+                    {
+                        title: 'Downloading template archive',
+                        task: () =>
+                            new Observable((observer) => {
+                                const bar = new ProgressBar(
+                                    'downloading <bar> <percent> | time left: <timeLeft>'
+                                );
+
+                                shell.mkdir('-p', project.path);
+                                zip.download(
+                                    'https://github.com/othneildrew/Best-README-Template/archive/master.zip',
+                                    bar
+                                ).then((archive) => {
+                                    templateArchive = archive;
+                                    observer.complete();
+                                });
+
+                                const interval = setInterval(() => {
+                                    if (bar.complete) {
+                                        clearInterval(interval);
+                                    } else {
+                                        observer.next(bar.render());
+                                    }
+                                });
+                            }),
+                    },
+                    {
+                        title: 'Extracting the template from the archive',
+                        async task() {
+                            await zip.extract('', templateArchive, path);
+                        },
+                    },
+                ]),
         },
     ]);
 };
