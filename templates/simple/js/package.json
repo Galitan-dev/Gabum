@@ -11,7 +11,7 @@
   },
   "repository": "https://github.com/--author--/--project--",
   "bugs": "https://github.com/--author--/--project--/issues",
-  "homepage": "https://github.com/--author--/--project-",
+  "homepage": "https://github.com/--author--/--project--",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
