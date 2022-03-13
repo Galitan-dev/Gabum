@@ -16,7 +16,7 @@ const PATH = require('path');
  * @param {string} path
  * @returns {Listr}
  */
-module.exports = function (infos, path, { Listr, Observable, ProgressBar, request, zip }) {
+module.exports = function (infos, path, { Listr, Observable, ProgressBar, request, zip, shell }) {
     /** @type {license} */
     let licenseModel, license, templateArchive;
 
