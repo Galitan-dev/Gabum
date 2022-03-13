@@ -130,10 +130,15 @@ module.exports = function (infos, path, { Listr, Observable, ProgressBar, reques
                         task() {
                             const readmeTemplate = readFileSync(PATH.join(path, 'README.md'), 'utf-8');
                             const readme = readmeTemplate
+                                .replace("`github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`", "`twitter_handle`, `linkedin_username`, `email_client`, `email`")
                                 .replace(/github_username/g, infos.author)
                                 .replace(/repo_name/g, infos.name)
                                 .replace(/project_title/g, infos.name)
                                 .replace(/project_description/g, infos.description)
+                                .replace(/MIT/g, infos.license.name)
+                                .replace(/LICENSE\.txt/g, 'LICENSE')
+                                .replace(/Your Name/, infos.author)
+
                             writeFileSync(PATH.join(path, 'README.md'), readme, 'utf-8');
                         },
                     },
