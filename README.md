@@ -55,16 +55,165 @@ USAGE
 # Commands
 
 <!-- commands -->
-# Command Topics
+* [`gabum commands`](#gabum-commands)
+* [`gabum conf [KEY] [VALUE]`](#gabum-conf-key-value)
+* [`gabum help [COMMAND]`](#gabum-help-command)
+* [`gabum project create`](#gabum-project-create)
+* [`gabum test`](#gabum-test)
+* [`gabum upgrade`](#gabum-upgrade)
+* [`gabum which`](#gabum-which)
 
-* [`gabum commands`](docs/commands.md) - list all the commands
-* [`gabum conf`](docs/conf.md) - manage configuration
-* [`gabum help`](docs/help.md) - Display help for gabum.
-* [`gabum project`](docs/project.md) - Project Management
-* [`gabum test`](docs/test.md) - test command
-* [`gabum upgrade`](docs/upgrade.md) - upgrade the package to the last version
-* [`gabum which`](docs/which.md) - Show which plugin a command is in.
+## `gabum commands`
 
+list all the commands
+
+```
+USAGE
+  $ gabum commands [--json] [-h] [--hidden] [--columns <value> | -x] [--sort <value>] [--filter <value>]
+    [--output csv|json|yaml |  | [--csv | --no-truncate]] [--no-header | ]
+
+FLAGS
+  -h, --help         Show CLI help.
+  -x, --extended     show extra columns
+  --columns=<value>  only show provided columns (comma-separated)
+  --csv              output is csv format [alias: --output=csv]
+  --filter=<value>   filter property by partial string matching, ex: name=foo
+  --hidden           show hidden commands
+  --no-header        hide table header from output
+  --no-truncate      do not truncate output to fit screen
+  --output=<option>  output in a more machine friendly format
+                     <options: csv|json|yaml>
+  --sort=<value>     property to sort by (prepend '-' for descending)
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+DESCRIPTION
+  list all the commands
+```
+
+_See code: [@oclif/plugin-commands](https://github.com/oclif/plugin-commands/blob/v2.1.0/src/commands/commands.ts)_
+
+## `gabum conf [KEY] [VALUE]`
+
+manage configuration
+
+```
+USAGE
+  $ gabum conf [KEY] [VALUE] [-h] [-k <value>] [-v <value>] [-d] [-p <value>] [-n <value>] [-d <value>]
+
+ARGUMENTS
+  KEY    key of the config
+  VALUE  value of the config
+
+FLAGS
+  -d, --cwd=<value>      config file location
+  -d, --delete           delete?
+  -h, --help             show CLI help
+  -k, --key=<value>      key of the config
+  -n, --name=<value>     config file name
+  -p, --project=<value>  project name
+  -v, --value=<value>    value of the config
+
+DESCRIPTION
+  manage configuration
+```
+
+_See code: [conf-cli](https://github.com/natzcam/conf-cli/blob/v0.1.9/src/commands/conf.ts)_
+
+## `gabum help [COMMAND]`
+
+Display help for gabum.
+
+```
+USAGE
+  $ gabum help [COMMAND] [-n]
+
+ARGUMENTS
+  COMMAND  Command to show help for.
+
+FLAGS
+  -n, --nested-commands  Include all nested commands in the output.
+
+DESCRIPTION
+  Display help for gabum.
+```
+
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.11/src/commands/help.ts)_
+
+## `gabum project create`
+
+Create a new project
+
+```
+USAGE
+  $ gabum project create
+
+DESCRIPTION
+  Create a new project
+
+ALIASES
+  $ gabum create
+
+EXAMPLES
+  $ gabum project create
+```
+
+## `gabum test`
+
+test command
+
+```
+USAGE
+  $ gabum test
+
+DESCRIPTION
+  test command
+
+EXAMPLES
+  $ gabum test
+```
+
+_See code: [dist/commands/test.ts](https://github.com/Galitan-dev/Gabum/blob/v1.0.0/dist/commands/test.ts)_
+
+## `gabum upgrade`
+
+upgrade the package to the last version
+
+```
+USAGE
+  $ gabum upgrade [-w <value>] [-f]
+
+FLAGS
+  -f, --force
+  -w, --with=<value>  package manager to use
+
+DESCRIPTION
+  upgrade the package to the last version
+
+ALIASES
+  $ gabum update
+  $ gabum up
+
+EXAMPLES
+  $ gabum upgrade
+```
+
+_See code: [dist/commands/upgrade.ts](https://github.com/Galitan-dev/Gabum/blob/v1.0.0/dist/commands/upgrade.ts)_
+
+## `gabum which`
+
+Show which plugin a command is in.
+
+```
+USAGE
+  $ gabum which
+
+DESCRIPTION
+  Show which plugin a command is in.
+```
+
+_See code: [@oclif/plugin-which](https://github.com/oclif/plugin-which/blob/v2.1.0/src/commands/which.ts)_
 <!-- commandsstop -->
 
 # Tech Stack
