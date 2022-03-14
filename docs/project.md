@@ -32,13 +32,13 @@ Open a project
 
 ```
 USAGE
-  $ gabum project open [PROJECT] [-w ide|terminal|browser]
+  $ gabum project open [PROJECT] [-w <value>]
 
 ARGUMENTS
   PROJECT  The project to open
 
 FLAGS
-  -w, --with=(ide|terminal|browser)  Where to open the project
+  Must be one --or more-- of terminal, browser and ide=<value>...  Where to open the project
 
 DESCRIPTION
   Open a project

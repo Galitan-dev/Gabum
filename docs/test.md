@@ -20,4 +20,4 @@ EXAMPLES
   $ gabum test
 ```
 
-_See code: [dist/commands/test.ts](https://github.com/Galitan-dev/Gabum/blob/v1.1.0/dist/commands/test.ts)_
+_See code: [dist/commands/test.ts](https://github.com/Galitan-dev/Gabum/blob/v1.1.1/dist/commands/test.ts)_

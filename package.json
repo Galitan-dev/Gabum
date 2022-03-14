@@ -1,7 +1,7 @@
 {
   "name": "gabum",
   "description": "A simple project manager made with Node JS.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": "Galitan-dev",
   "bin": {
     "gabum": "./bin/run"
@@ -90,8 +90,8 @@
     "lint": "eslint . --ext .ts --config .eslintrc.json",
     "lint:fix": "eslint . --fix --ext .ts --config .eslintrc.json",
     "postpack": "shx rm -f oclif.manifest.json",
-    "prepack": "yarn build && oclif manifest && oclif readme --multi",
-    "version": "oclif readme --multi && git add README.md"
+    "prepack": "yarn build && oclif manifest && oclif readme --multi && git add README.md docs",
+    "version": "oclif readme --multi && git add README.md docs"
   },
   "husky": {
     "hooks": {
