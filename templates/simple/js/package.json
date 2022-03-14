@@ -1,0 +1,22 @@
+{
+  "name": "--project--",
+  "description": "--description--",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "--license--",
+  "private": "--private--",
+  "author": {
+    "name": "--author--",
+    "url": "https://github.com/--author--"
+  },
+  "repository": "https://github.com/--author--/--project--",
+  "bugs": "https://github.com/--author--/--project--/issues",
+  "homepage": "https://github.com/--author--/--project--",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
