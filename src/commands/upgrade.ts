@@ -1,5 +1,5 @@
 import { Command, Flags } from '@oclif/core';
-import pm from 'detect-package-manager';
+import * as pm from 'detect-package-manager';
 import shell from 'shelljs';
 
 export default class Upgrade extends Command {
@@ -32,13 +32,13 @@ export default class Upgrade extends Command {
 
         switch (packageManager) {
             case 'npm':
-                shell.exec('npm update -g gabum');
+                shell.exec('npm install -g gabum@latest');
                 break;
             case 'yarn':
-                shell.exec('yarn global upgrade gabum');
+                shell.exec('yarn global add gabum@latest');
                 break;
             case 'pnpm':
-                shell.exec('pnpm update -g gabum');
+                shell.exec('pnpm install -g gabum@latest');
                 break;
         }
     }
