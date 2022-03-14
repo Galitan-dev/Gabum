@@ -23,11 +23,12 @@ export default class ProjectOpen extends Command {
     ];
 
     static flags = {
-        with: Flags.enum({
+        with: Flags.string({
             char: 'w',
             description: 'Where to open the project',
-            options: ['ide', 'terminal', 'browser'],
             multiple: true,
+            helpLabel: 'Must be one --or more-- of terminal, browser and ide',
+            required: false,
         }),
     };
     static examples = [
@@ -39,6 +40,19 @@ export default class ProjectOpen extends Command {
 
     public async run(): Promise<void> {
         const { flags, args } = await this.parse(ProjectOpen);
+
+        const invalidFlagId = flags.with.findIndex(
+            (t) => !['terminal', 'ide', 'browser'].includes(t)
+        );
+
+        if (invalidFlagId !== -1) {
+            this.log(
+                chalk.yellow(
+                    'Invalid tool ' + chalk.bold('`' + flags.with[invalidFlagId] + '`') + '.'
+                )
+            );
+            flags.with.splice(invalidFlagId, 1);
+        }
 
         const homedir = this.config.home;
         const projectDir = <string>(
@@ -118,8 +132,6 @@ export default class ProjectOpen extends Command {
                     },
                 ])
             ).actions;
-
-        this.log(actions);
 
         if (actions.includes('ide')) {
             const cmd = config.get('ide-command');
