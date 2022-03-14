@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@types/adm-zip": "^0.4.34",
-    "@types/node": "^16.9.4",
+    "@types/node": "^16.11.26",
     "@types/prompts": "^2.0.14",
     "@types/shelljs": "^0.8.11",
     "@types/superagent": "^4.1.15",
