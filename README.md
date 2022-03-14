@@ -21,8 +21,8 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
+[![GitHub pull requests][pr-shield]][pr-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
 
 
 
@@ -274,6 +274,6 @@ Project Link: [https://github.com/Galitan-dev/Gabum](https://github.com/Galitan-
 [license-shield]: https://img.shields.io/github/license/Galitan-dev/Gabum.svg?style=for-the-badge
 [license-url]: https://github.com/Galitan-dev/Gabum/blob/main/LICENSE
 [contributinh-url]: https://github.com/Galitan-dev/Gabum/blob/main/CONTRIBUTING.md
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/galitan-coys-766697234
 [product-screenshot]: images/screenshot.png
+[pr-shield]: https://img.shields.io/github/issues-pr/galitan-dev/gabum?style=for-the-badge
+[pr-url]: https://github.com/Galitan-dev/Gabum/pulls
