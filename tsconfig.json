@@ -1,18 +1,16 @@
 {
   "compilerOptions": {
-    "outDir": "bin",
-    "target": "es2016",
-    "module": "CommonJS",
-    "esModuleInterop": true,      
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,                 
-    "skipLibCheck": true,
-    "moduleResolution": "node",
-    "typeRoots": [
-      "node_modules/@types",
-      "src/main/types"
-    ],
-    "baseUrl": "src/main",
-    "experimentalDecorators": true
-  }
+    "declaration": true,
+    "importHelpers": true,
+    "module": "commonjs",
+    "outDir": "dist",
+    "rootDir": "src",
+    "strict": true,
+    "target": "es2019",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+  },
+  "include": [
+    "src/**/*"
+  ],
 }
