@@ -90,7 +90,7 @@
     "lint": "eslint . --ext .ts --config .eslintrc.json",
     "lint:fix": "eslint . --fix --ext .ts --config .eslintrc.json",
     "postpack": "shx rm -f oclif.manifest.json",
-    "prepack": "yarn build && oclif manifest && oclif readme",
+    "prepack": "yarn build && oclif manifest && oclif readme --multi",
     "version": "oclif readme --multi && git add README.md"
   },
   "husky": {
