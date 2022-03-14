@@ -15,12 +15,12 @@ export default class ProjectCreate extends Command {
     static description = 'Create a new project';
     static aliases = ['create'];
 
-    static examples = ['<%= config.bin %> <%= command.id %>', '<%= config.bin %> open'];
+    static examples = ['<%= config.bin %> <%= command.id %>'];
 
     public async run(): Promise<void> {
         const homedir = this.config.home;
         const projectDir = <string>(
-            config.get('project-dir', path.join(homedir, 'Documents/Development'))
+            config.get('project_dir', path.join(homedir, 'Documents/Development'))
         );
 
         this.log(chalk.greenBright.bold("It's a great day to start a new project!"));
