@@ -73,10 +73,28 @@ USAGE
 May change in the future
 
  - [x] Project Creation
- - [ ] Open Project
+ - [x] Open Project
+ - [ ] Use a New Readme Template (like in templates)
  - [ ] Configuration
- - [ ] Quick Start
+   - [ ] New Config Manager
+   - [ ] Config Hook
+   - [ ] Config Command
+ - [ ] Project Definitions Storage
+   - [ ] In User Configs
+   - [ ] In Project
+ - [ ] Template Definitions
  - [ ] More Templates
+   - [ ] Blank
+   - [ ] Simple TS
+   - [ ] CLI (JS/TS) (With Oclif)
+   - [ ] Discord (JS/TS/Rust)
+   - [ ] Website
+   - [ ] API (JS/TS) (With Adonis)
+   - [ ] VueJs
+   - [ ] ReactJs
+   - [ ] Find Ideas
+ - [ ] Some Coding Tools
+   - [ ] Find Ideas
  - [ ] Electron App
  - [ ] Voice Recognition
 
