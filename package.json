@@ -6,7 +6,7 @@
   "bin": {
     "gabum": "./bin/run"
   },
-  "bugs": "https://github.com/oclif/hello-world/issues",
+  "bugs": "https://github.com/galitan-dev/gabum/issues",
   "dependencies": {
     "@oclif/core": "^1",
     "@oclif/plugin-commands": "^2.1.0",
@@ -53,7 +53,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/oclif/hello-world",
+  "homepage": "https://github.com/galitan-dev/gabum",
   "keywords": [
     "oclif",
     "project manager",
@@ -90,7 +90,7 @@
     "lint": "eslint . --ext .ts --config .eslintrc.json",
     "lint:fix": "eslint . --fix --ext .ts --config .eslintrc.json",
     "postpack": "shx rm -f oclif.manifest.json",
-    "prepack": "yarn build && oclif manifest && oclif readme",
+    "prepack": "yarn build && oclif manifest && oclif readme --multi",
     "version": "oclif readme --multi && git add README.md"
   },
   "husky": {
