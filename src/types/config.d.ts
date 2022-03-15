@@ -1,11 +1,12 @@
-declare interface DefaultProjectSettings {
+export declare interface DefaultProjectSettings {
+    description: string;
     private: boolean;
-    type: string;
-    language: string;
+    template: string;
     license: string;
 }
 
-declare interface Configuration {
-    directory: string;
-    defaultProjectSettings: DefaultProjectSettings;
+export declare interface Commands {
+    ide: string;
+    terminal: string;
+    others: { name: string; cmd: string }[];
 }

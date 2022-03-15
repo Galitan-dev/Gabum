@@ -1,0 +1,18 @@
+# Please modify this file only if you know what you are doing!
+
+project-dir: <home-dir>/Documents/Development
+default-project-settings:
+  description: I am to lazy to write a short description.
+  private: false
+  template: simple/js
+  # template: cli/ts/oclif
+  # template: website
+  # template: bot/rs
+  license: MIT
+commands:
+  ide: code .
+  terminal: hyper .
+  # Soon
+  # others:
+  #   - name: finder
+  #     cmd: open .
