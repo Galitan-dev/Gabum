@@ -41,17 +41,19 @@ export default class ProjectOpen extends Command {
     public async run(): Promise<void> {
         const { flags, args } = await this.parse(ProjectOpen);
 
-        const invalidFlagId = flags.with.findIndex(
-            (t) => !['terminal', 'ide', 'browser'].includes(t)
-        );
-
-        if (invalidFlagId !== -1) {
-            this.log(
-                chalk.yellow(
-                    'Invalid tool ' + chalk.bold('`' + flags.with[invalidFlagId] + '`') + '.'
-                )
+        if (flags.with) {
+            const invalidFlagId = flags.with?.findIndex(
+                (t) => !['terminal', 'ide', 'browser'].includes(t)
             );
-            flags.with.splice(invalidFlagId, 1);
+
+            if (invalidFlagId !== -1) {
+                this.log(
+                    chalk.yellow(
+                        'Invalid tool ' + chalk.bold('`' + flags.with[invalidFlagId] + '`') + '.'
+                    )
+                );
+                flags.with.splice(invalidFlagId, 1);
+            }
         }
 
         const homedir = this.config.home;
