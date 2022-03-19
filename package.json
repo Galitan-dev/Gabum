@@ -83,8 +83,8 @@
     },
     "hooks": {
       "init": [
-        "./src/hooks/init/cli_requirements",
-        "./src/hooks/init/config"
+        "./dist/hooks/init/cli_requirements",
+        "./dist/hooks/init/config"
       ]
     }
   },
@@ -92,6 +92,7 @@
   "scripts": {
     "build": "shx rm -rf dist && tsc -b",
     "dev": "yarn build && ./bin/dev",
+    "gabum": "./bin/run",
     "lint": "eslint . --ext .ts --config .eslintrc.json",
     "lint:fix": "eslint . --fix --ext .ts --config .eslintrc.json",
     "postpack": "shx rm -f oclif.manifest.json",
