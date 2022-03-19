@@ -55,28 +55,28 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li><details>
-      <summary><a href="#about-the-project">About The Project</a></summary>
-      <ul>
-      <li><a href="#built-with">Built With</a></li>
+    <li>
+    <a href="#about-the-project">About The Project</a>
+    <ul style="list-style: none">
+      <li>1.1. <a href="#built-with">Built With</a></li>
+    </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul style="list-style: none">
+        <li>2.1. <a href="#prerequisites">Prerequisites</a></li>
+        <li>2.2. <a href="#installation">Installation</a></li>
       </ul>
-    </details></li>
-    <li><details>
-      <summary><a href="#getting-started">Getting Started</a></summary>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+    </li>
+    <li>
+      <a href="#usage">Usage</a>
+      <ul style="list-style: none">
+        <li>3.1. <a href="#crate-a-new-project">Create a new project</a></li>
+        <li>3.2. <a href="#open-a-project">Open a project</a></li>
+        <li>3.3. <a href="#get-additional-help">Get additional help</a></li>
+        <li>3.4. <a href="#other-commands">Other Commands</a></li>
       </ul>
-    </details></li>
-    <li><details>
-      <summary><a href="#usage">Usage</a></summary>
-      <ul>
-        <li><a href="#crate-a-new-project">Create a new project</a></li>
-        <li><a href="#open-a-project">Open a project</a></li>
-        <li><a href="#get-additional-help">Get additional help</a></li>
-        <li><a href="#other-commands">Other Commands</a></li>
-      </ul>
-    </details></li>
+    </li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
