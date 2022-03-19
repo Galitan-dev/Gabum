@@ -4,6 +4,8 @@ import { parse, stringify } from 'yaml';
 import { Commands, DefaultProjectSettings } from '../types/config';
 
 export class Config {
+    public static instance: Config;
+
     private path: string;
     private doc!: {
         'project-dir': string;
@@ -12,6 +14,7 @@ export class Config {
     };
 
     constructor(configPath: string) {
+        Config.instance = this;
         this.path = configPath;
         this.loadFile(configPath);
     }
@@ -48,9 +51,13 @@ export class Config {
         this.doc['commands'] = commands;
     }
 
+    toString(): string {
+        return stringify(this.doc);
+    }
+
     save() {
         writeFileSync(this.path, stringify(this.doc), 'utf8');
     }
 }
 
-export default new Config(`${os.homedir()}/.config/gabum/config.yml`);
+export default () => Config.instance;

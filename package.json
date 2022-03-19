@@ -82,7 +82,10 @@
       }
     },
     "hooks": {
-      "init": "./src/hooks/init/cli_requirements"
+      "init": [
+        "./src/hooks/init/cli_requirements",
+        "./src/hooks/init/config"
+      ]
     }
   },
   "repository": "https://github.com/Galitan-dev/Gabum",

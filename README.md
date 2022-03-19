@@ -190,7 +190,7 @@ I'll yet Oclif explain you how the other commands work.
  - [x] Use a New Readme Template (like in templates)
  - [ ] Configuration
    - [x] New Config Manager
-   - [ ] Config Hook
+   - [x] Config Hook
    - [ ] Config Command
  - [ ] Project Definitions Storage
    - [ ] In User Configs
