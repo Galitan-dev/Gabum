@@ -166,7 +166,7 @@ USAGE
 I'll yet Oclif explain you how the other commands work.
 
 <!-- commands -->
-### Other Commands
+# Command Topics
 
 * [`gabum commands`](docs/commands.md) - list all the commands
 * [`gabum conf`](docs/conf.md) - manage configuration
