@@ -22,7 +22,11 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![GitHub pull requests][pr-shield]][pr-url]
+
 [![MIT License][license-shield]][license-url]
+[![Maintainer][maintainer-shield]][maintainer-url]
+[![Version][version-shield]][version-url]
+
 
 
 
@@ -284,3 +288,7 @@ Project Link: [https://github.com/Galitan-dev/Gabum](https://github.com/Galitan-
 [product-screenshot]: images/screenshot.png
 [pr-shield]: https://img.shields.io/github/issues-pr/galitan-dev/gabum?style=for-the-badge
 [pr-url]: https://github.com/Galitan-dev/Gabum/pulls
+[version-shield]: https://img.shields.io/npm/v/gabum?style=for-the-badge
+[version-url]: https://www.npmjs.com/package/gabum
+[maintainer-shield]: https://img.shields.io/badge/maintainer-Galitan--dev-informational?style=for-the-badge
+[maintainer-url]: https://github.com/Galitan-dev/
