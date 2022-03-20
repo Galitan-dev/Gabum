@@ -20,15 +20,34 @@
 
 <center>
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![GitHub pull requests][pr-shield]][pr-url]
+<a href="https://github.com/Galitan-dev/Gabum/graphs/contributors">
+  <img src="https://img.shields.io/github/contributors/Galitan-dev/Gabum.svg?style=for-the-badge" alt="Contributors">
+</a>
+<a href="https://github.com/Galitan-dev/Gabum/network/members">
+  <img src="https://img.shields.io/github/forks/Galitan-dev/Gabum.svg?style=for-the-badge" alt="Forks">
+</a>
+<a href="https://github.com/Galitan-dev/Gabum/stargazers">
+  <img src=" https://img.shields.io/github/stars/Galitan-dev/Gabum.svg?style=for-the-badge" alt="Stars">
+</a>
+<a href="https://github.com/">
+  <img src="https://img.shields.io/github/contributors/Galitan-dev/Gabum.svg?style=for-the-badge" alt="Contributors">
+</a>
+<a href="https://github.com/Galitan-dev/Gabum/issues">
+  <img src="https://img.shields.io/github/issues/Galitan-dev/Gabum.svg?style=for-the-badge" alt="Issues">
+</a>
+<a href="https://github.com/Galitan-dev/Gabum/blob/main/LICENSE">
+  <img src="https://img.shields.io/github/license/Galitan-dev/Gabum.svg?style=for-the-badge" alt="MIT License">
+</a>
+<a href="https://github.com/Galitan-dev/Gabum/pulls">
+  <img src="https://img.shields.io/github/issues-pr/galitan-dev/gabum?style=for-the-badge" alt="Pull Requests">
+</a>
+<a href="https://www.npmjs.com/package/gabum">
+  <img src="https://img.shields.io/npm/v/gabum?style=for-the-badge" alt="Version">
+</a>
+<a href="https://github.com/Galitan-dev/">
+  <img src="https://img.shields.io/badge/maintainer-Galitan--dev-informational?style=for-the-badge" alt="Maintainer">
+</a>
 
-[![MIT License][license-shield]][license-url]
-[![Maintainer][maintainer-shield]][maintainer-url]
-[![Version][version-shield]][version-url]
 </center>
 
 
@@ -279,21 +298,5 @@ Project Link: [https://github.com/Galitan-dev/Gabum](https://github.com/Galitan-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/Galitan-dev/Gabum.svg?style=for-the-badge
-[contributors-url]: https://github.com/Galitan-dev/Gabum/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/Galitan-dev/Gabum.svg?style=for-the-badge
-[forks-url]: https://github.com/Galitan-dev/Gabum/network/members
-[stars-shield]: https://img.shields.io/github/stars/Galitan-dev/Gabum.svg?style=for-the-badge
-[stars-url]: https://github.com/Galitan-dev/Gabum/stargazers
-[issues-shield]: https://img.shields.io/github/issues/Galitan-dev/Gabum.svg?style=for-the-badge
-[issues-url]: https://github.com/Galitan-dev/Gabum/issues
-[license-shield]: https://img.shields.io/github/license/Galitan-dev/Gabum.svg?style=for-the-badge
-[license-url]: https://github.com/Galitan-dev/Gabum/blob/main/LICENSE
-[contributinh-url]: https://github.com/Galitan-dev/Gabum/blob/main/CONTRIBUTING.md
+[contributing-url]: https://github.com/Galitan-dev/Gabum/blob/main/CONTRIBUTING.md
 [product-screenshot]: images/screenshot.png
-[pr-shield]: https://img.shields.io/github/issues-pr/galitan-dev/gabum?style=for-the-badge
-[pr-url]: https://github.com/Galitan-dev/Gabum/pulls
-[version-shield]: https://img.shields.io/npm/v/gabum?style=for-the-badge
-[version-url]: https://www.npmjs.com/package/gabum
-[maintainer-shield]: https://img.shields.io/badge/maintainer-Galitan--dev-informational?style=for-the-badge
-[maintainer-url]: https://github.com/Galitan-dev/
