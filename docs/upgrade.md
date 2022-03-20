@@ -28,4 +28,4 @@ EXAMPLES
   $ gabum upgrade
 ```
 
-_See code: [dist/commands/upgrade.ts](https://github.com/Galitan-dev/Gabum/blob/v1.4.1/dist/commands/upgrade.ts)_
+_See code: [dist/commands/upgrade.ts](https://github.com/Galitan-dev/Gabum/blob/v1.4.2/dist/commands/upgrade.ts)_
