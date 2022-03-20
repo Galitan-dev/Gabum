@@ -18,7 +18,7 @@
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
 
-<center>
+<p style="text-align: center;">
 
 <a href="https://github.com/Galitan-dev/Gabum/graphs/contributors">
   <img src="https://img.shields.io/github/contributors/Galitan-dev/Gabum.svg?style=for-the-badge" alt="Contributors">
@@ -48,7 +48,7 @@
   <img src="https://img.shields.io/badge/maintainer-Galitan--dev-informational?style=for-the-badge" alt="Maintainer">
 </a>
 
-</center>
+</p>
 
 
 
