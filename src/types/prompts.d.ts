@@ -33,12 +33,12 @@ declare namespace prompts {
 
     interface PromptObject<T extends string = string> {
         type: PromptType | Falsy | PrevCaller<T, PromptType | Falsy>;
-        name: ValueOrFunc<T>;
+        name?: ValueOrFunc<T>;
         message?: ValueOrFunc<string> | undefined;
-        initial?:
-            | InitialReturnValue
-            | PrevCaller<T, InitialReturnValue | Promise<InitialReturnValue>>
-            | undefined;
+        initial?: // eslint-disable-next-line prettier/prettier
+        | InitialReturnValue // eslint-disable-next-line prettier/prettier
+        | PrevCaller<T, InitialReturnValue | Promise<InitialReturnValue>> // eslint-disable-next-line prettier/prettier
+        | undefined;
         style?: string | PrevCaller<T, string | Falsy> | undefined;
         format?: PrevCaller<T, void> | undefined;
         validate?: PrevCaller<T, boolean | string | Promise<boolean | string>> | undefined;

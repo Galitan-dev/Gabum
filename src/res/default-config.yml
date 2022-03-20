@@ -8,7 +8,7 @@ default-project-settings:
   # template: cli/ts/oclif
   # template: website
   # template: bot/rs
-  license: MIT
+  license: MIT License
 commands:
   ide: code .
   terminal: hyper .

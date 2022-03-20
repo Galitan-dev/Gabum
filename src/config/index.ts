@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import { readFileSync, writeFileSync } from 'fs';
 import os from 'os';
 import { parse, stringify } from 'yaml';
@@ -55,8 +56,16 @@ export class Config {
         return stringify(this.doc);
     }
 
+    toColoredString(): string {
+        return stringify(this.doc)
+            .replace(/([a-z\-]+):([\s\n])/gi, chalk.red('$1') + ':$2')
+            .replace(/<(home-dir)>/g, chalk.blue('<$1>') + '\x1B[32m')
+            .replace(/: (false|true)/gi, ': ' + chalk.yellow('$1'))
+            .replace(/: (.+)/gi, ': ' + chalk.green('$1'));
+    }
+
     save() {
-        writeFileSync(this.path, stringify(this.doc), 'utf8');
+        writeFileSync(this.path, this.toString(), 'utf8');
     }
 }
 

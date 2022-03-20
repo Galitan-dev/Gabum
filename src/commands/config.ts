@@ -1,9 +1,11 @@
 import { Command } from '@oclif/core';
 import chalk from 'chalk';
+import { textSync as bigText } from 'figlet';
 import { existsSync } from 'fs';
 import PATH from 'path';
 import conf from '../config';
 import prompt from '../helpers/prompt';
+import licenses from '../res/licenses.json';
 import { PromptObject } from '../types/prompts';
 
 export default class Config extends Command {
@@ -20,19 +22,43 @@ export default class Config extends Command {
         const homedir = this.config.home;
 
         while (true) {
+            process.stdout.write('\u001b[3J\u001b[2J\u001b[1J');
+            console.clear();
+
+            const color = chalk.greenBright;
+            this.log(
+                bigText('  Gabum  Config  ', 'Star Wars')
+                    .split('\n')
+                    .map((l, i, a) => {
+                        if (i === 0) {
+                            return (
+                                '  ' +
+                                color.inverse(new Array(l.length - 4).fill(' ').join('')) +
+                                '\n' +
+                                color.bold.inverse(l)
+                            );
+                        }
+                        if (i === a.length - 1) {
+                            return (
+                                color.bold.inverse(l) +
+                                '\n  ' +
+                                color.inverse(new Array(l.length - 4).fill(' ').join(''))
+                            );
+                        }
+                        return color.inverse.bold(l);
+                    })
+                    .join('\n')
+            );
+            this.log();
             this.log(config.toColoredString());
             this.log();
-            const action = await prompt<'cancel' | 'save' | 'reset' | 'get' | 'set'>(
+            const action = await prompt<'cancel' | 'save' | 'reset' | 'set'>(
                 'What do you want to do ?',
                 {
                     type: 'select',
                     hint: 'Space to select. Return to submit',
                     instructions: false,
                     choices: [
-                        {
-                            title: chalk.cyan('Get a setting'),
-                            value: 'get',
-                        },
                         {
                             title: chalk.cyan('Modify settings'),
                             value: 'set',
@@ -56,13 +82,10 @@ export default class Config extends Command {
             switch (action) {
                 case 'cancel':
                     if (!(await prompt('Quit without saving?', 'confirm'))) break;
-                    this.log('Okay, Bye 👋');
                     this.exit(0);
 
                 case 'save':
-                    this.log('Saving changes...');
                     config.save();
-                    this.log('Saved! Bye 👋');
                     this.exit(0);
 
                 case 'reset':
@@ -75,11 +98,14 @@ export default class Config extends Command {
                 case 'set': {
                     const setting = await chooseSetting();
 
+                    const defaultProjectSettings = config.defaultProjectSettings;
+                    const commands = config.commands;
                     switch (setting) {
                         case 'project-dir':
                             const newPath = await prompt('Project Directory?', <PromptObject>{
                                 type: 'text',
                                 hint: 'You can use <home-dir> alias',
+                                initial: config.projectDir,
                                 validate(value) {
                                     if (typeof value !== 'string') return 'Invalid input';
                                     if (!existsSync(value.replace(/<home-dir>/g, homedir)))
@@ -94,19 +120,19 @@ export default class Config extends Command {
                                     );
 
                                     const newRender = this.rendered
-                                        ?.replace(/(["#%/<>|])+/g, color.red('$1'))
+                                        ?.replace(/(["#%|])+/g, color.red('$1'))
                                         .replace(/\s+(\S+)/g, color.grey('-') + '$1')
                                         .replace(/\s+/g, '');
 
                                     this.rendered = (exists ? color.green : color.red)(
-                                        this.rendered?.match(/[\s"#%/<>|]+([^\s"#%/<>|]+)/g)
+                                        this.rendered?.match(/[\s"#%|]+([^\s"#%/<>|]+)/g)
                                             ? newRender
                                             : this.rendered
                                     );
                                 },
                                 format(input) {
                                     return (<string>input)
-                                        .replace(/["#%/<>|]+/g, '-')
+                                        .replace(/["#%|]+/g, '-')
                                         .replace(/\s+(\S+)/g, '-$1')
                                         .replace(/\s+/g, '');
                                 },
@@ -114,14 +140,78 @@ export default class Config extends Command {
 
                             config.projectDir = <string>newPath;
                             break;
-                    }
 
+                        case 'project-visibility':
+                            defaultProjectSettings.private = <boolean>(
+                                await prompt('Project Visibility', {
+                                    type: 'toggle',
+                                    initial: defaultProjectSettings.private,
+                                    active: 'Private',
+                                    inactive: 'Public',
+                                })
+                            );
+                            break;
+
+                        case 'project-description':
+                            defaultProjectSettings.description = <string>(
+                                await prompt('Project Description', {
+                                    type: 'text',
+                                    validate(value) {
+                                        if (typeof value !== 'string') return 'Invalid input';
+                                        if (value.length > 100)
+                                            return 'Too long project description';
+                                        if (value.length === 0)
+                                            return 'Please provide a project description';
+                                        if (value.length < 10)
+                                            return 'Too small project description';
+                                        return true;
+                                    },
+                                    initial: defaultProjectSettings.description,
+                                })
+                            );
+                            break;
+
+                        case 'project-template':
+                            // TODO
+                            break;
+
+                        case 'project-license':
+                            defaultProjectSettings.license = <string>(
+                                await prompt('Project License', {
+                                    type: 'autocomplete',
+                                    initial: defaultProjectSettings.license,
+                                    choices: Object.values(licenses).map((l) => ({
+                                        title: l.name,
+                                        value: l.name,
+                                    })),
+                                })
+                            );
+                            break;
+                        case 'commands-ide':
+                            commands.ide = <string>await prompt('IDE Command', {
+                                type: 'text',
+                                initial: commands.ide,
+                            });
+                            break;
+                        case 'commands-terminal':
+                            commands.terminal = <string>await prompt('Terminal Command', {
+                                type: 'text',
+                                initial: commands.terminal,
+                            });
+                            break;
+                    }
+                    config.defaultProjectSettings = defaultProjectSettings;
+                    config.commands = commands;
                     break;
                 }
             }
-
-            this.log();
         }
+    }
+
+    exit(code?: number): void {
+        process.stdout.write('\u001b[3J\u001b[2J\u001b[1J');
+        console.clear();
+        super.exit(code);
     }
 }
 
