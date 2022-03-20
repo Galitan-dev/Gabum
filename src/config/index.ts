@@ -57,11 +57,14 @@ export class Config {
     }
 
     toColoredString(): string {
-        return stringify(this.doc)
-            .replace(/([a-z\-]+):([\s\n])/gi, chalk.red('$1') + ':$2')
-            .replace(/<(home-dir)>/g, chalk.blue('<$1>') + '\x1B[32m')
-            .replace(/: (false|true)/gi, ': ' + chalk.yellow('$1'))
-            .replace(/: (.+)/gi, ': ' + chalk.green('$1'));
+        return chalk.white(
+            stringify(this.doc, { indent: 4 })
+                .replace(/([a-z\-]+):([\s\n])/gi, chalk.red('$1') + ':$2')
+                .replace(/<(home-dir)>/g, chalk.blue('<$1>') + '\x1B[32m')
+                .replace(/: (false|true)/gi, ': ' + chalk.yellow('$1'))
+                .replace(/: (.+)/gi, ': ' + chalk.green('$1'))
+                .slice(0, -2)
+        );
     }
 
     save() {

@@ -5,15 +5,13 @@ export default class Test extends BaseCommand {
 
     static examples = ['<%= config.bin %> <%= command.id %>'];
 
-    conf = undefined;
-
     public async run(): Promise<void> {
-        this.l.info('Running Test Logs...');
-        this.l.debug(this.config.topics);
-        this.l.warn('Invalid config:', this.conf);
-        this.l.error('Missing ideas for testing');
-        this.l.critical('Giving up');
+        this.l.info('Testing congig');
 
-        // this.log('There is currently nothing to test.', 'warn');
+        this.l.debug('Actual config: \n' + this.conf.toColoredString());
+        this.conf.defaultProjectSettings.description = 'The test worked !';
+        this.l.debug('New config: \n' + this.conf.toColoredString());
+
+        this.l.info("Don't worry, not saving this...");
     }
 }

@@ -1,11 +1,14 @@
 import { Command } from '@oclif/core';
 import chalk from 'chalk';
+import conf, { Config } from './config';
 
 export default abstract class BaseCommand extends Command {
     protected readonly logger = new Logger();
     protected get l(): Logger {
         return this.logger;
     }
+
+    protected readonly conf: Config = conf();
 }
 
 export class Logger {
