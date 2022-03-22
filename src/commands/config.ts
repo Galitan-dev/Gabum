@@ -268,6 +268,7 @@ export default class Config extends Command {
 //     }
 // }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type Setting =
     | 'project-dir'
     | 'project-description'
