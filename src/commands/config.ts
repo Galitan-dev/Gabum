@@ -1,4 +1,4 @@
-import { Command } from '@oclif/core';
+/* import { Command } from '@oclif/core';
 import chalk from 'chalk';
 import { textSync as bigText } from 'figlet';
 import { existsSync } from 'fs';
@@ -299,3 +299,4 @@ type Setting =
     | 'project-template'
     | 'commands-ide'
     | 'commands-terminal';
+ */

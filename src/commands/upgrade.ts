@@ -13,12 +13,12 @@ export default class Upgrade extends Command {
         // flag with a value (-w, --with=VALUE)
         with: Flags.string({
             char: 'w',
-            description: 'package manager to use',
+            description: 'package manager to use'
         }),
         // flag with no value (-f, --force)
         force: Flags.boolean({
-            char: 'f',
-        }),
+            char: 'f'
+        })
     };
 
     public async run(): Promise<void> {

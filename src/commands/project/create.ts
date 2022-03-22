@@ -61,7 +61,7 @@ export default class ProjectCreate extends Command {
                         .replace(/["#%/<>|]+/g, '-')
                         .replace(/\s+(\S+)/g, '-$1')
                         .replace(/\s+/g, '');
-                },
+                }
             },
             {
                 name: 'description',
@@ -74,7 +74,7 @@ export default class ProjectCreate extends Command {
                     if (value.length < 10) return 'Too small project description';
                     return true;
                 },
-                initial: 'I am to lazy to write a small description',
+                initial: 'I am to lazy to write a small description'
             },
             {
                 name: 'private',
@@ -82,7 +82,7 @@ export default class ProjectCreate extends Command {
                 message: 'Project Visibility',
                 initial: <boolean>config.get('default-project-private', false),
                 active: 'Private',
-                inactive: 'Public',
+                inactive: 'Public'
             },
             {
                 type: 'autocomplete',
@@ -92,33 +92,33 @@ export default class ProjectCreate extends Command {
                 choices: [
                     {
                         title: 'API',
-                        value: 'api',
+                        value: 'api'
                     },
                     {
                         title: 'Blank',
-                        value: 'blank',
+                        value: 'blank'
                     },
                     {
                         title: 'CLI',
-                        value: 'cli',
+                        value: 'cli'
                     },
                     {
                         title: 'Discord Bot',
-                        value: 'discord',
+                        value: 'discord'
                     },
                     {
                         title: 'Simple',
-                        value: 'simple',
+                        value: 'simple'
                     },
                     {
                         title: 'Web App',
-                        value: 'webapp',
+                        value: 'webapp'
                     },
                     {
                         title: 'Website',
-                        value: 'website',
-                    },
-                ],
+                        value: 'website'
+                    }
+                ]
             },
             {
                 type: 'autocomplete',
@@ -128,25 +128,25 @@ export default class ProjectCreate extends Command {
                 choices: [
                     {
                         title: 'JavaScript',
-                        value: 'js',
+                        value: 'js'
                     },
                     {
                         title: 'TypeScript',
-                        value: 'ts',
+                        value: 'ts'
                     },
                     {
                         title: 'Web (HTML, CSS, JS)',
-                        value: 'web',
+                        value: 'web'
                     },
                     {
                         title: 'Rust',
-                        value: 'rs',
+                        value: 'rs'
                     },
                     {
                         title: 'Other',
-                        value: 'other',
-                    },
-                ],
+                        value: 'other'
+                    }
+                ]
             },
             {
                 type: 'autocomplete',
@@ -155,9 +155,9 @@ export default class ProjectCreate extends Command {
                 initial: <string>config.get('default-project-license', 'MIT License'),
                 choices: Object.values(licenses).map((l) => ({
                     title: l.name,
-                    value: l,
-                })),
-            },
+                    value: l
+                }))
+            }
         ]).map((msg) => {
             msg.message = chalk.reset(msg.message);
             return msg;
@@ -180,8 +180,8 @@ export default class ProjectCreate extends Command {
                                 if (value.length === 0) return 'Please provide a project author';
                                 if (value.length < 3) return 'Too small project author';
                                 return true;
-                            },
-                        },
+                            }
+                        }
                     ])
                 ).author
             );
@@ -205,18 +205,18 @@ export default class ProjectCreate extends Command {
                 choices: [
                     {
                         title: 'Open in Favorite IDE',
-                        value: 'ide',
+                        value: 'ide'
                     },
                     {
                         title: 'Open in Browser',
-                        value: 'browse',
+                        value: 'browse'
                     },
                     {
                         title: 'Open in a new Terminal',
-                        value: 'terminal',
-                    },
-                ],
-            },
+                        value: 'terminal'
+                    }
+                ]
+            }
         ]);
 
         if (actions.toDo.includes('ide')) {
@@ -224,7 +224,7 @@ export default class ProjectCreate extends Command {
             if (!cmd) this.log(chalk.yellow("Oups! you didn't configured an ide command !"));
             else
                 await shell.exec(<string>cmd, {
-                    cwd: project.path,
+                    cwd: project.path
                 });
         }
 
@@ -237,7 +237,7 @@ export default class ProjectCreate extends Command {
             if (!cmd) this.log(chalk.yellow("Oups! you didn't configured a terminal command !"));
             else
                 await shell.exec(<string>cmd, {
-                    cwd: project.path,
+                    cwd: project.path
                 });
         }
     }

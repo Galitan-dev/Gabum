@@ -18,8 +18,8 @@ export default class ProjectOpen extends Command {
         {
             name: 'project',
             required: false,
-            description: 'The project to open',
-        },
+            description: 'The project to open'
+        }
     ];
 
     static flags = {
@@ -28,14 +28,14 @@ export default class ProjectOpen extends Command {
             description: 'Where to open the project',
             multiple: true,
             helpLabel: 'Must be one --or more-- of terminal, browser and ide',
-            required: false,
-        }),
+            required: false
+        })
     };
     static examples = [
         '<%= config.bin %> <%= command.id %>',
         '<%= config.bin %> <%= command.id %> My-Super-Project',
         '<%= config.bin %> open My-Super-Project --with terminal',
-        '<%= config.bin %> open -w browser -w ide',
+        '<%= config.bin %> open -w browser -w ide'
     ];
 
     public async run(): Promise<void> {
@@ -92,8 +92,8 @@ export default class ProjectOpen extends Command {
                             }
 
                             this.rendered = c(this.rendered);
-                        },
-                    },
+                        }
+                    }
                 ])
             ).project;
 
@@ -120,18 +120,18 @@ export default class ProjectOpen extends Command {
                         choices: [
                             {
                                 title: 'My Favorite IDE',
-                                value: 'ide',
+                                value: 'ide'
                             },
                             {
                                 title: 'Browser',
-                                value: 'browser',
+                                value: 'browser'
                             },
                             {
                                 title: 'A new Terminal',
-                                value: 'terminal',
-                            },
-                        ],
-                    },
+                                value: 'terminal'
+                            }
+                        ]
+                    }
                 ])
             ).actions;
 
@@ -140,7 +140,7 @@ export default class ProjectOpen extends Command {
             if (!cmd) this.log(chalk.yellow("Oups! you didn't configured an ide command !"));
             else
                 await shell.exec(<string>cmd, {
-                    cwd: projectPath,
+                    cwd: projectPath
                 });
         }
 
@@ -153,7 +153,7 @@ export default class ProjectOpen extends Command {
             if (!cmd) this.log(chalk.yellow("Oups! you didn't configured a terminal command !"));
             else
                 await shell.exec(<string>cmd, {
-                    cwd: projectPath,
+                    cwd: projectPath
                 });
         }
     }
