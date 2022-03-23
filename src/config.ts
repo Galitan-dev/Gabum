@@ -2,7 +2,8 @@ import chalk from 'chalk';
 import { readFileSync, writeFileSync } from 'fs';
 import os from 'os';
 import { parse, stringify } from 'yaml';
-import { Commands, DefaultProjectSettings } from '../types/config';
+import BaseCommand from './base-command';
+import { Commands, DefaultProjectSettings } from './types/config';
 
 export class Config {
     public static instance: Config;
@@ -11,6 +12,7 @@ export class Config {
     private doc!: {
         'project-dir': string;
         'default-project-settings': DefaultProjectSettings;
+        author: string;
         commands: Commands;
     };
 
@@ -50,6 +52,25 @@ export class Config {
 
     set commands(commands: Commands) {
         this.doc['commands'] = commands;
+    }
+
+    set author(author: string) {
+        this.doc['author'] = author;
+    }
+
+    get author(): string {
+        return this.doc['author'];
+    }
+
+    async getAuthor<Cmd extends BaseCommand>(cmd: Cmd): Promise<string> {
+        if (this.author !== 'galitan-dev') return this.author;
+        this.author = await cmd.textInput('Github Username', {
+            validate() {
+                // TODO: check on github (need to be async)
+                return true;
+            },
+        });
+        return this.author;
     }
 
     toString(): string {
