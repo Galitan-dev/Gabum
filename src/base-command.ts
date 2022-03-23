@@ -16,26 +16,26 @@ import {
 import { PromptObject } from './types/prompts';
 
 export default abstract class BaseCommand extends Command {
-    protected readonly logger = new Logger();
-    protected get l(): Logger {
+    private readonly logger = new Logger();
+    get l(): Logger {
         return this.logger;
     }
     /** Add a new line */
-    protected get nl(): Logger {
+    get nl(): Logger {
         this.log();
         return this.logger;
     }
 
     /** Clear the terminal */
-    protected get nt(): Logger {
+    get nt(): Logger {
         process.stdout.write('\u001b[3J\u001b[2J\u001b[1J');
         console.clear();
         return this.logger;
     }
 
-    protected readonly conf: Config = conf();
+    readonly conf: Config = conf();
 
-    protected async textInput(msg: string, options?: TextPromptOptions): Promise<string> {
+    async textInput(msg: string, options?: TextPromptOptions): Promise<string> {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const res = await prompts(<any>(<PromptObject>{
             name: 'answer',
@@ -77,7 +77,7 @@ export default abstract class BaseCommand extends Command {
         return res.answer;
     }
 
-    protected async numberInput(msg: string, options?: NumberPromptOptions): Promise<number> {
+    async numberInput(msg: string, options?: NumberPromptOptions): Promise<number> {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const res = await prompts(<any>(<PromptObject>{
             name: 'answer',
@@ -105,7 +105,7 @@ export default abstract class BaseCommand extends Command {
         return res.answer;
     }
 
-    protected async select<T extends string | number | object | boolean | Date>(
+    async select<T extends string | number | object | boolean | Date>(
         msg: string,
         choices: (PromptChoice<T> | (T & (string | number | boolean)))[] | { [key: string]: T },
         options?: SelectPromptOptions
@@ -131,7 +131,7 @@ export default abstract class BaseCommand extends Command {
         return res.answer;
     }
 
-    protected async confirm(msg: string, initial?: boolean): Promise<boolean> {
+    async confirm(msg: string, initial?: boolean): Promise<boolean> {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const res = await prompts(<any>(<PromptObject>{
             name: 'answer',
@@ -143,7 +143,7 @@ export default abstract class BaseCommand extends Command {
         return res.answer;
     }
 
-    protected async toggle(
+    async toggle(
         msg: string,
         active?: string,
         inactive?: string,
