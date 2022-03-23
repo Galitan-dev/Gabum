@@ -20,11 +20,13 @@ export default abstract class BaseCommand extends Command {
     protected get l(): Logger {
         return this.logger;
     }
+    /** Add a new line */
     protected get nl(): Logger {
         this.log();
         return this.logger;
     }
 
+    /** Clear the terminal */
     protected get nt(): Logger {
         process.stdout.write('\u001b[3J\u001b[2J\u001b[1J');
         console.clear();
@@ -195,6 +197,10 @@ function validateAll(...handlers: ValidatorHandler<number | RegExp>[]): string |
 }
 
 export class Logger {
+    print(msg: string, ...args: unknown[]): void {
+        console.log(msg, args);
+    }
+
     log(msg: string, level: LogLevel = 'info', ...args: unknown[]): void {
         switch (level) {
             case 'info':
@@ -211,6 +217,7 @@ export class Logger {
                 break;
             case 'critical':
                 console.error(chalk.magenta(chalk.bold('[CRITICAL]: ') + msg), ...args);
+                break;
         }
     }
 
