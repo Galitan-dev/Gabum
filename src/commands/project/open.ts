@@ -1,16 +1,15 @@
-import { Command, Flags } from '@oclif/core';
+import { Flags } from '@oclif/core';
 import { Arg } from '@oclif/core/lib/interfaces';
 import chalk from 'chalk';
 import Conf from 'conf';
 import { statSync } from 'fs';
 import PATH from 'path';
-import { prompt } from 'prompts';
 import shell from 'shelljs';
-import { PromptObject } from '../../types/prompts';
+import BaseCommand from '../../base-command';
 
 const config = new Conf();
 
-export default class ProjectOpen extends Command {
+export default class ProjectOpen extends BaseCommand {
     static description = 'Open a project';
     static aliases = ['open'];
 
@@ -18,8 +17,8 @@ export default class ProjectOpen extends Command {
         {
             name: 'project',
             required: false,
-            description: 'The project to open'
-        }
+            description: 'The project to open',
+        },
     ];
 
     static flags = {
@@ -28,14 +27,14 @@ export default class ProjectOpen extends Command {
             description: 'Where to open the project',
             multiple: true,
             helpLabel: 'Must be one --or more-- of terminal, browser and ide',
-            required: false
-        })
+            required: false,
+        }),
     };
     static examples = [
         '<%= config.bin %> <%= command.id %>',
         '<%= config.bin %> <%= command.id %> My-Super-Project',
         '<%= config.bin %> open My-Super-Project --with terminal',
-        '<%= config.bin %> open -w browser -w ide'
+        '<%= config.bin %> open -w browser -w ide',
     ];
 
     public async run(): Promise<void> {
@@ -47,10 +46,8 @@ export default class ProjectOpen extends Command {
             );
 
             if (invalidFlagId !== -1) {
-                this.log(
-                    chalk.yellow(
-                        'Invalid tool ' + chalk.bold('`' + flags.with[invalidFlagId] + '`') + '.'
-                    )
+                this.l.warn(
+                    'Invalid tool ' + chalk.bold('`' + flags.with[invalidFlagId] + '`') + '.'
                 );
                 flags.with.splice(invalidFlagId, 1);
             }
@@ -63,84 +60,43 @@ export default class ProjectOpen extends Command {
 
         const projectName =
             args.project ||
-            (
-                await prompt(<PromptObject[]>[
-                    {
-                        name: 'project',
-                        type: 'text',
-                        message: chalk.reset.blue.italic('Which project do you want to open?'),
-                        validate(value) {
-                            if (typeof value !== 'string') return 'Invalid input';
-
-                            try {
-                                statSync(PATH.join(projectDir, value, '.gabum'));
-                            } catch (err) {
-                                return 'This is not a gabum project !';
-                            }
-
-                            return true;
-                        },
-                        onRender(color) {
-                            if (!this._value) return;
-
-                            let c;
-                            try {
-                                statSync(PATH.join(projectDir, this._value, '.gabum'));
-                                c = color.green;
-                            } catch (err) {
-                                c = color.red;
-                            }
-
-                            this.rendered = c(this.rendered);
-                        }
+            (await this.textInput('Which project do you want to open?', {
+                validate(value) {
+                    try {
+                        statSync(PATH.join(projectDir, value, '.gabum'));
+                        return true;
+                    } catch (err) {
+                        return 'This is not a gabum project !';
                     }
-                ])
-            ).project;
+                },
+            }));
 
         const projectPath = PATH.join(projectDir, projectName);
         try {
             statSync(PATH.join(projectPath, '.gabum'));
         } catch (err) {
-            return this.log(chalk.red.bold('This is not a gabum project !'));
+            this.l.error('This is not a gabum project !');
+            this.exit(1);
         }
 
         const actions =
             flags.with ||
-            (
-                await prompt(<PromptObject[]>[
-                    {
-                        name: 'actions',
-                        type: 'multiselect',
-                        message: chalk.reset.blue.italic(
-                            'With what do you want to open this project?'
-                        ),
-                        hint: 'Space to select. Return to submit',
-                        instructions: false,
-                        min: 1,
-                        choices: [
-                            {
-                                title: 'My Favorite IDE',
-                                value: 'ide'
-                            },
-                            {
-                                title: 'Browser',
-                                value: 'browser'
-                            },
-                            {
-                                title: 'A new Terminal',
-                                value: 'terminal'
-                            }
-                        ]
-                    }
-                ])
-            ).actions;
+            (await this.select<'ide' | 'browser' | 'terminal'>(
+                'With what do you want to open this project?',
+                {
+                    'My Favorite IDE': 'ide',
+                    Browser: 'browser',
+                    'A new Terminal': 'terminal',
+                },
+                { multiple: true }
+            ));
 
         if (actions.includes('ide')) {
             const cmd = config.get('ide-command');
-            if (!cmd) this.log(chalk.yellow("Oups! you didn't configured an ide command !"));
+            if (!cmd) this.l.warn("Oups! you didn't configured an ide command !");
             else
                 await shell.exec(<string>cmd, {
-                    cwd: projectPath
+                    cwd: projectPath,
                 });
         }
 
@@ -150,10 +106,10 @@ export default class ProjectOpen extends Command {
 
         if (actions.includes('terminal')) {
             const cmd = config.get('terminal-command');
-            if (!cmd) this.log(chalk.yellow("Oups! you didn't configured a terminal command !"));
+            if (!cmd) this.l.warn("Oups! you didn't configured a terminal command !");
             else
                 await shell.exec(<string>cmd, {
-                    cwd: projectPath
+                    cwd: projectPath,
                 });
         }
     }
