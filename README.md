@@ -166,7 +166,7 @@ USAGE
 I'll yet Oclif explain you how the other commands work.
 
 <!-- commands -->
-# Command Topics
+# Other commands
 
 * [`gabum commands`](docs/commands.md) - list all the commands
 * [`gabum conf`](docs/conf.md) - manage configuration
@@ -189,20 +189,22 @@ I'll yet Oclif explain you how the other commands work.
  - [x] Project Creation
  - [x] Open Project
  - [x] Use a New Readme Template (like in templates)
- - [ ] Configuration
+ - [x] Configuration
    - [x] New Config Manager
    - [x] Config Hook
    - [x] Config Command
-   - [ ] Implementation
- - [ ] Base Command
+   - [x] Implementation
+ - [x] Base Command
    - [x] Logger
    - [x] Config wrapper
    - [x] Prompt Wrapper
-   - [ ] Implementation
+   - [x] Implementation
+ - [ ] Template Definitions
+   - [ ] List
+   - [ ] Prompter
  - [ ] Project Definitions Storage
    - [ ] In User Configs
    - [ ] In Project
- - [ ] Template Definitions
  - [ ] More Templates
    - [ ] Blank
    - [ ] Simple TS
@@ -214,6 +216,9 @@ I'll yet Oclif explain you how the other commands work.
    - [ ] ReactJs
    - [ ] Find Ideas
  - [ ] Some Coding Tools
+   - [ ] Line Counter
+   - [ ] Publish Command
+   - [ ] Readme Generator
    - [ ] Find Ideas
  - [ ] Electron App
  - [ ] Voice Recognition
