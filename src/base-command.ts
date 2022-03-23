@@ -42,6 +42,7 @@ export default abstract class BaseCommand extends Command {
             type: 'text',
             style: options?.style,
             message: chalk.italic.blue(msg),
+            initial: options?.initial,
             validate(value: string) {
                 return validateAll(
                     [

@@ -8,6 +8,7 @@ export interface NumberPromptOptions {
 export type TextPromptOptions = NumberPromptOptions & {
     match?: Validator<RegExp>;
     style?: 'default' | 'password' | 'emoji' | 'invisible';
+    initial?: string;
 };
 
 export interface SelectPromptOptions {
