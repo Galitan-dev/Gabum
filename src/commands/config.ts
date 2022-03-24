@@ -85,6 +85,14 @@ export default class Config extends BaseCommand {
                                 },
                             });
                             break;
+                        case 'author':
+                            config.author = await this.textInput('Github Username', {
+                                validate() {
+                                    // TODO: check on github (need to be async)
+                                    return true;
+                                },
+                            });
+                            break;
                         case 'project-visibility':
                             defaultProjectSettings.private = await this.toggle(
                                 'Project visibility',
@@ -140,14 +148,14 @@ export default class Config extends BaseCommand {
 }
 
 async function chooseSetting<Cmd extends BaseCommand>(cmd: Cmd): Promise<Setting> {
-    const setting = await cmd.select<'project-dir' | 'default-project-settings' | 'commands'>(
-        'Wich setting?',
-        {
-            'Project Directory': 'project-dir',
-            'Default Project Settings': 'default-project-settings',
-            Commands: 'commands',
-        }
-    );
+    const setting = await cmd.select<
+        'project-dir' | 'author' | 'default-project-settings' | 'commands'
+    >('Wich setting?', {
+        'Project Directory': 'project-dir',
+        'Github Username': 'author',
+        'Default Project Settings': 'default-project-settings',
+        Commands: 'commands',
+    });
 
     switch (setting) {
         case 'default-project-settings':
@@ -175,6 +183,7 @@ async function chooseSetting<Cmd extends BaseCommand>(cmd: Cmd): Promise<Setting
 
 type Setting =
     | 'project-dir'
+    | 'author'
     | 'project-description'
     | 'project-visibility'
     | 'project-license'

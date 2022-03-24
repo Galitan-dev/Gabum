@@ -1,6 +1,7 @@
 # Please modify this file only if you know what you are doing!
 
 project-dir: <home-dir>/Documents/Development
+author: null
 default-project-settings:
   description: I am to lazy to write a short description.
   private: false

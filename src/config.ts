@@ -2,7 +2,6 @@ import chalk from 'chalk';
 import { readFileSync, writeFileSync } from 'fs';
 import os from 'os';
 import { parse, stringify } from 'yaml';
-import BaseCommand from './base-command';
 import { Commands, DefaultProjectSettings } from './types/config';
 
 export class Config {
@@ -60,17 +59,6 @@ export class Config {
 
     get author(): string {
         return this.doc['author'];
-    }
-
-    async getAuthor<Cmd extends BaseCommand>(cmd: Cmd): Promise<string> {
-        if (this.author !== 'galitan-dev') return this.author;
-        this.author = await cmd.textInput('Github Username', {
-            validate() {
-                // TODO: check on github (need to be async)
-                return true;
-            },
-        });
-        return this.author;
     }
 
     toString(): string {

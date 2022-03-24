@@ -57,7 +57,17 @@ export default class ProjectCreate extends BaseCommand {
             }))
         );
 
-        const author = await this.conf.getAuthor(this);
+        let author = await this.conf.author;
+        if (!author) {
+            author = await this.textInput('Github Username', {
+                validate() {
+                    // TODO: check on github (need to be async)
+                    return true;
+                },
+            });
+            this.conf.author = author;
+            this.conf.save();
+        }
 
         const project = new Project({
             name,
