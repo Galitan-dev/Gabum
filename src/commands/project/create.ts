@@ -3,6 +3,7 @@ import Conf from 'conf';
 import fs from 'fs';
 import PATH from 'path';
 import shell from 'shelljs';
+import request from 'superagent';
 import BaseCommand from '../../base-command';
 import Project from '../../project';
 import licenses from '../../res/licenses.json';
@@ -54,15 +55,25 @@ export default class ProjectCreate extends BaseCommand {
             Object.values(licenses).map((l) => ({
                 title: l.name,
                 value: l,
-            }))
+            })),
+            { autocomplete: true }
         );
 
         let author = await this.conf.author;
+        const version = this.config.version;
         if (!author) {
             author = await this.textInput('Github Username', {
-                validate() {
-                    // TODO: check on github (need to be async)
-                    return true;
+                async validate(input: string): Promise<string | true> {
+                    try {
+                        const res = await request
+                            .get('https://api.github.com/users/' + input)
+                            .set('user-agent', 'Gabum v' + version + ' (Node.js)');
+
+                        return typeof res.body.id === 'number' || 'Invalid user';
+                    } catch (e) {
+                        if ((<Error>e).message === 'Not Found') return 'Invalid user';
+                        return 'Network Error: ' + (<Error>e).message;
+                    }
                 },
             });
             this.conf.author = author;

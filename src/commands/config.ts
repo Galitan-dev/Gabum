@@ -2,6 +2,7 @@ import chalk from 'chalk';
 import { textSync as bigText } from 'figlet';
 import { existsSync } from 'fs';
 import PATH from 'path';
+import request from 'superagent';
 import BaseCommand from '../base-command';
 import licenses from '../res/licenses.json';
 
@@ -56,6 +57,8 @@ export default class Config extends BaseCommand {
                 }
             );
 
+            const version = this.config.version;
+
             switch (action) {
                 case 'cancel':
                     if (!(await this.confirm('Quit without saving?'))) break;
@@ -87,9 +90,18 @@ export default class Config extends BaseCommand {
                             break;
                         case 'author':
                             config.author = await this.textInput('Github Username', {
-                                validate() {
-                                    // TODO: check on github (need to be async)
-                                    return true;
+                                async validate(input: string): Promise<string | true> {
+                                    try {
+                                        const res = await request
+                                            .get('https://api.github.com/users/' + input)
+                                            .set('user-agent', 'Gabum v' + version + ' (Node.js)');
+
+                                        return typeof res.body.id === 'number' || 'Invalid user';
+                                    } catch (e) {
+                                        if ((<Error>e).message === 'Not Found')
+                                            return 'Invalid user';
+                                        return 'Network Error: ' + (<Error>e).message;
+                                    }
                                 },
                             });
                             break;

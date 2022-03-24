@@ -49,8 +49,8 @@ export async function create(project: Project) {
                                     });
                                 }),
                             options: {
-                                bottomBar: true
-                            }
+                                bottomBar: true,
+                            },
                         },
                         {
                             title: 'Extracting the template from the archive',
@@ -60,12 +60,12 @@ export async function create(project: Project) {
                                     templateArchive,
                                     project.path
                                 );
-                            }
-                        }
+                            },
+                        },
                     ]),
                 options: {
-                    showTimer: true
-                }
+                    showTimer: true,
+                },
             },
             {
                 title: 'Initializing the project',
@@ -79,12 +79,12 @@ export async function create(project: Project) {
                         Observable,
                         ProgressBar,
                         zip: portableZip(ZIP, request),
-                        shell
+                        shell,
                     });
                 },
                 options: {
-                    showTimer: true
-                }
+                    showTimer: true,
+                },
             },
             {
                 title: 'Publising the project',
@@ -94,7 +94,7 @@ export async function create(project: Project) {
                             title: 'Create local repository',
                             async task() {
                                 await shell.exec('git init ' + project.path + ' --quiet');
-                            }
+                            },
                         },
                         {
                             title: 'Create a new repository on GitHub',
@@ -110,10 +110,10 @@ export async function create(project: Project) {
                                         ),
                                         '--source',
                                         JSON.stringify(project.path),
-                                        '--remote upstream'
+                                        '--remote upstream',
                                     ].join(' ')
                                 );
-                            }
+                            },
                         },
                         {
                             title: 'Linking local repository to GitHub',
@@ -121,33 +121,33 @@ export async function create(project: Project) {
                                 await shell.exec(
                                     `git remote add origin https://github.com/${project.infos.author}/${project.infos.name}.git`,
                                     {
-                                        cwd: project.path
+                                        cwd: project.path,
                                     }
                                 );
-                            }
+                            },
                         },
                         {
                             title: 'Pushing first changes to GitHub',
                             async task() {
                                 await shell.exec('git add -A', { cwd: project.path });
                                 await shell.exec('git commit -qm "Initial Commit (gabum)"', {
-                                    cwd: project.path
+                                    cwd: project.path,
                                 });
                                 await shell.exec('git push --quiet -u origin main', {
-                                    cwd: project.path
+                                    cwd: project.path,
                                 });
-                            }
-                        }
+                            },
+                        },
                     ]),
                 options: {
-                    showTimer: true
-                }
-            }
+                    showTimer: true,
+                },
+            },
         ],
         {
             rendererOptions: {
-                collapse: false
-            }
+                collapse: false,
+            },
         }
     );
 
