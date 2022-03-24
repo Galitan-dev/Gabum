@@ -43,8 +43,8 @@ export default abstract class BaseCommand extends Command {
             style: options?.style,
             message: chalk.italic.blue(msg),
             initial: options?.initial,
-            validate(value: string) {
-                return validateAll(
+            async validate(value: string) {
+                return await validateAllAndCallback(
                     options?.validate?.bind(null, value),
                     [
                         options?.min,
@@ -65,7 +65,6 @@ export default abstract class BaseCommand extends Command {
                 const value = <string>(<unknown>this._value);
                 this.rendered = (
                     validateAll(
-                        options?.validate?.bind(null, value),
                         [options?.min, (min) => value.length >= <number>min || ''],
                         [options?.max, (max) => value.length <= <number>max || ''],
                         [options?.match, (regexp) => value.match(<RegExp>regexp) !== null || '']
@@ -87,7 +86,6 @@ export default abstract class BaseCommand extends Command {
             message: chalk.italic.blue(msg),
             validate(value: number) {
                 return validateAll(
-                    undefined,
                     [options?.min, (min) => value >= <number>min || `Mininum number is ${min}`],
                     [options?.max, (max) => value <= <number>max || `Maximum number is ${max}`]
                 );
@@ -96,7 +94,6 @@ export default abstract class BaseCommand extends Command {
                 const value = <number>(<unknown>this._value);
                 this.rendered = (
                     validateAll(
-                        undefined,
                         [options?.min, (min) => value >= <number>min || ''],
                         [options?.max, (max) => value <= <number>max || '']
                     ) === true
@@ -190,16 +187,22 @@ function validate<T extends number | RegExp>(
     return Array.isArray(validator) ? validator[1] : result;
 }
 
-function validateAll(
-    callback?: () => string | true,
+async function validateAllAndCallback(
+    callback?: () => string | true | Promise<string | true>,
     ...handlers: ValidatorHandler<number | RegExp>[]
-): string | true {
+): Promise<string | true> {
+    const res = validateAll(...handlers);
+    if (typeof res === 'string') return res;
+    if (callback) {
+        return await callback();
+    }
+    return true;
+}
+
+function validateAll(...handlers: ValidatorHandler<number | RegExp>[]): string | true {
     for (const [validator, handler] of handlers) {
         const res = validate(validator, handler);
         if (typeof res === 'string') return res;
-    }
-    if (callback) {
-        return callback();
     }
     return true;
 }

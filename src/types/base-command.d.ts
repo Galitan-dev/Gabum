@@ -9,7 +9,7 @@ export type TextPromptOptions = NumberPromptOptions & {
     match?: Validator<RegExp>;
     style?: 'default' | 'password' | 'emoji' | 'invisible';
     initial?: string;
-    validate?: (input: string) => string | true;
+    validate?: (input: string) => string | true | Promise<string | true>;
 };
 
 export interface SelectPromptOptions {
