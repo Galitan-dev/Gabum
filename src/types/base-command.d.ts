@@ -12,11 +12,12 @@ export type TextPromptOptions = NumberPromptOptions & {
     validate?: (input: string) => string | true | Promise<string | true>;
 };
 
-export interface SelectPromptOptions {
+export interface SelectPromptOptions<T> {
     autocomplete?: boolean;
     multiple?: boolean;
     hint?: string;
     showInstructions?: boolean;
+    initial?: string | T;
 }
 
 export interface PromptChoice<T> {

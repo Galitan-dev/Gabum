@@ -110,7 +110,7 @@ export default abstract class BaseCommand extends Command {
     async select<T extends string | number | object | boolean | Date>(
         msg: string,
         choices: (PromptChoice<T> | (T & (string | number | boolean)))[] | { [key: string]: T },
-        options?: SelectPromptOptions
+        options?: SelectPromptOptions<T>
     ): Promise<T[] | T> {
         const cs = Array.isArray(choices)
             ? choices.map(mapChoice)
@@ -129,6 +129,7 @@ export default abstract class BaseCommand extends Command {
             hint: options?.hint ?? 'Space to select. Return to submit',
             instructions: options?.showInstructions ?? false,
             choices: cs,
+            initial: options?.initial,
             async suggest(query) {
                 const res = search(
                     query,

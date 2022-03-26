@@ -145,6 +145,7 @@ export default class Config extends BaseCommand {
                                 })),
                                 {
                                     autocomplete: true,
+                                    initial: defaultProjectSettings.license,
                                 }
                             );
                             break;

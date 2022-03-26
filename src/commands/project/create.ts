@@ -56,7 +56,7 @@ export default class ProjectCreate extends BaseCommand {
                 title: l.name,
                 value: l,
             })),
-            { autocomplete: true }
+            { autocomplete: true, initial: this.conf.defaultProjectSettings.license }
         );
 
         let author = await this.conf.author;
