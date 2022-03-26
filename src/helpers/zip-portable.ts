@@ -49,6 +49,6 @@ export default function (ZIP: any, request: any) {
                 mkdirSync(PATH.join(toDirectory, relativeDir), { recursive: true });
                 writeFileSync(PATH.join(toDirectory, relativeDir, e.name), e.getData());
             }
-        }
+        },
     };
 }

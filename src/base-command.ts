@@ -219,7 +219,7 @@ function validateAll(...handlers: ValidatorHandler<number | RegExp>[]): string |
 
 export class Logger {
     print(msg: string, ...args: unknown[]): void {
-        console.log(msg, args);
+        console.log(msg, ...args);
     }
 
     log(msg: string, level: LogLevel = 'info', ...args: unknown[]): void {

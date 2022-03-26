@@ -142,7 +142,10 @@ export default class Config extends BaseCommand {
                                 Object.values(licenses).map((l) => ({
                                     title: l.name,
                                     value: l.name,
-                                }))
+                                })),
+                                {
+                                    autocomplete: true,
+                                }
                             );
                             break;
                         case 'commands-ide':
