@@ -1,8 +1,9 @@
 import { Command } from '@oclif/core';
 import chalk from 'chalk';
-import prompts from 'prompts';
+import prompts, { Choice } from 'prompts';
 import conf, { Config } from './config';
 import { mapArray } from './helpers/arrays';
+import search from './helpers/search';
 import {
     LogLevel,
     NumberPromptOptions,
@@ -111,6 +112,9 @@ export default abstract class BaseCommand extends Command {
         choices: (PromptChoice<T> | (T & (string | number | boolean)))[] | { [key: string]: T },
         options?: SelectPromptOptions
     ): Promise<T[] | T> {
+        const cs = Array.isArray(choices)
+            ? choices.map(mapChoice)
+            : Object.entries(choices).map(([title, value]) => ({ title, value }));
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const res = await prompts(<any>(<PromptObject>{
             name: 'answer',
@@ -124,9 +128,15 @@ export default abstract class BaseCommand extends Command {
             message: chalk.italic.blue(msg),
             hint: options?.hint ?? 'Space to select. Return to submit',
             instructions: options?.showInstructions ?? false,
-            choices: Array.isArray(choices)
-                ? choices.map(mapChoice)
-                : Object.entries(choices).map(([title, value]) => ({ title, value })),
+            choices: cs,
+            async suggest(query, choices) {
+                const res = search(
+                    query,
+                    cs.map((c) => c.title)
+                );
+
+                return <unknown>res.map((s) => (<Choice[]>cs).find((c) => c.title === s));
+            },
         }));
 
         return res.answer;
