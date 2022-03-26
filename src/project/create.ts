@@ -1,5 +1,4 @@
 import ZIP from 'adm-zip';
-import events from 'events';
 import { Listr } from 'listr2';
 import PATH from 'path';
 import { Observable } from 'rxjs';
@@ -11,10 +10,6 @@ import * as zip from '../helpers/zip';
 import portableZip from '../helpers/zip-portable';
 
 shell.config.silent = true;
-
-export class Test extends events.EventEmitter {
-    _: undefined;
-}
 
 export async function create(project: Project) {
     let templateArchive: Buffer;
@@ -56,7 +51,7 @@ export async function create(project: Project) {
                             title: 'Extracting the template from the archive',
                             async task() {
                                 await zip.extract(
-                                    `templates/${project.infos.type}/${project.infos.language}`,
+                                    '', // `templates/${project.infos.type}/${project.infos.language}`
                                     templateArchive,
                                     project.path
                                 );

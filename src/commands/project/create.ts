@@ -6,8 +6,9 @@ import shell from 'shelljs';
 import request from 'superagent';
 import BaseCommand from '../../base-command';
 import Project from '../../project';
+import Template from '../../project/template';
 import licenses from '../../res/licenses.json';
-import { ProjectLanguage, ProjectLicense, ProjectType } from '../../types/project';
+import { ProjectLicense, TemplateId } from '../../types/project';
 
 const config = new Conf();
 
@@ -47,8 +48,18 @@ export default class ProjectCreate extends BaseCommand {
             this.conf.defaultProjectSettings.private
         );
 
-        // TODO
-        const template = this.conf.defaultProjectSettings.template;
+        const template = <TemplateId>await this.select(
+            'Project Template',
+            Template.list().map((template) => ({
+                title: template.name,
+                description: template.description,
+                value: template.id,
+            })),
+            {
+                autocomplete: true,
+                initial: this.conf.defaultProjectSettings.template,
+            }
+        );
 
         const license = <ProjectLicense>await this.select(
             'Project License',
@@ -86,8 +97,7 @@ export default class ProjectCreate extends BaseCommand {
             private: isPrivate,
             license,
             author,
-            type: <ProjectType>template.split('/')[0],
-            language: <ProjectLanguage>template.split('/')[1],
+            template,
         });
 
         this.nl.info("Okay, I'm creating the project...");

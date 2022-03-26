@@ -3,8 +3,7 @@ export declare interface ProjectInfos {
     author: string;
     description: string;
     private: boolean;
-    type: ProjectType;
-    language: ProjectLanguage;
+    template: TemplateId;
     license: ProjectLicense;
 }
 
