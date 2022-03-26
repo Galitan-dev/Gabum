@@ -1,0 +1,12 @@
+- name: JavaScript
+  id: simple/js
+  description: A simple <yellow>JavaScript</yellow> template for small projects
+- name: Javascript Discord Bot
+  id: discord/js
+  description: A <yellow>JavaScript</yellow> template for using the *discord.js* lib
+- name: TypeScript
+  id: simple/ts
+  description: A <blue>TypeScript</blue> template for small projects
+- name: Javascript Discord Bot
+  id: discord/ts
+  description: A <blue>TypeScript</blue> template for using the *discord.ts* lib

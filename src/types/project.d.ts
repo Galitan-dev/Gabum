@@ -22,3 +22,11 @@ export declare interface ProjectLicense {
     name: string;
     id: string;
 }
+
+export declare type TemplateId = 'simple/js' | 'discord/js' | 'simple/ts' | 'discord/ts';
+
+export declare interface TemplateDef {
+    id: TemplateId;
+    name: string;
+    description: string;
+}
