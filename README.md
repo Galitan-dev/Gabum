@@ -166,7 +166,7 @@ USAGE
 I'll yet Oclif explain you how the other commands work.
 
 <!-- commands -->
-# Command Topics
+### Other commands
 
 * [`gabum commands`](docs/commands.md) - list all the commands
 * [`gabum config`](docs/config.md) - Configure Gabum CLI
@@ -198,9 +198,9 @@ I'll yet Oclif explain you how the other commands work.
    - [x] Config wrapper
    - [x] Prompt Wrapper
    - [x] Implementation
- - [ ] Template Definitions
+ - [x] Template Definitions
    - [x] List
-   - [ ] Prompter
+   - [x] Prompter
  - [ ] Project Definitions Storage
    - [ ] In User Configs
    - [ ] In Project
