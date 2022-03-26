@@ -1,7 +1,7 @@
 {
   "name": "gabum",
   "description": "A simple project manager made with Node JS.",
-  "version": "1.5.5",
+  "version": "1.5.6",
   "author": "Galitan-dev",
   "bin": {
     "gabum": "./bin/run"
@@ -89,7 +89,7 @@
   },
   "repository": "https://github.com/Galitan-dev/Gabum",
   "scripts": {
-    "build": "shx rm -rf dist && tsc -b",
+    "build": "shx rm -rf dist && mkdir -p ./dist/res && cp ./src/res/* ./dist/res && tsc -b",
     "dev": "yarn build && ./bin/dev",
     "gabum": "./bin/run",
     "lint": "eslint . --ext .ts --config .eslintrc.json",
