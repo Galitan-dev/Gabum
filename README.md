@@ -166,15 +166,11 @@ USAGE
 I'll yet Oclif explain you how the other commands work.
 
 <!-- commands -->
-# Other commands
+# Command Topics
 
 * [`gabum commands`](docs/commands.md) - list all the commands
 * [`gabum conf`](docs/conf.md) - manage configuration
-* [`gabum config`](docs/config.md) - Configure Gabum CLI
 * [`gabum help`](docs/help.md) - Display help for gabum.
-* [`gabum project`](docs/project.md) - Project Management
-* [`gabum test`](docs/test.md) - test command
-* [`gabum upgrade`](docs/upgrade.md) - upgrade the package to the last version
 * [`gabum which`](docs/which.md) - Show which plugin a command is in.
 
 <!-- commandsstop -->
