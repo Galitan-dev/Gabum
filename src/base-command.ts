@@ -129,7 +129,7 @@ export default abstract class BaseCommand extends Command {
             hint: options?.hint ?? 'Space to select. Return to submit',
             instructions: options?.showInstructions ?? false,
             choices: cs,
-            async suggest(query, choices) {
+            async suggest(query) {
                 const res = search(
                     query,
                     cs.map((c) => c.title)

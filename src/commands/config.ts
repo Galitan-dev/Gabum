@@ -4,7 +4,9 @@ import { existsSync } from 'fs';
 import PATH from 'path';
 import request from 'superagent';
 import BaseCommand from '../base-command';
+import Template from '../project/template';
 import licenses from '../res/licenses.json';
+import { TemplateId } from '../types/project';
 
 export default class Config extends BaseCommand {
     static description = 'Configure Gabum CLI';
@@ -122,7 +124,17 @@ export default class Config extends BaseCommand {
                             );
                             break;
                         case 'project-template':
-                            // TODO
+                            defaultProjectSettings.template = <TemplateId>await this.select(
+                                'Project Template',
+                                Template.list().map((template) => ({
+                                    title: template.name,
+                                    description: template.description,
+                                    value: template.id,
+                                })),
+                                {
+                                    autocomplete: true,
+                                }
+                            );
                             break;
                         case 'project-license':
                             defaultProjectSettings.license = <string>await this.select(

@@ -1,7 +1,9 @@
+import { TemplateId } from './project';
+
 export declare interface DefaultProjectSettings {
     description: string;
     private: boolean;
-    template: string;
+    template: TemplateId;
     license: string;
 }
 

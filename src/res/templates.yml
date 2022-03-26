@@ -7,6 +7,6 @@
 - name: TypeScript
   id: simple/ts
   description: A <blue>TypeScript</blue> template for small projects
-- name: Javascript Discord Bot
+- name: TypeScript Discord Bot
   id: discord/ts
   description: A <blue>TypeScript</blue> template for using the *discord.ts* lib

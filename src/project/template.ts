@@ -9,7 +9,7 @@ export default class Template {
         readFileSync(PATH.join(__dirname, '../res/templates.yml'), 'utf-8')
     );
 
-    private static list(): Template[] {
+    public static list(): Template[] {
         return this.definitions.map((def) => new Template(def.id));
     }
 
