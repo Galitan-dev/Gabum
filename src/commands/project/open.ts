@@ -28,8 +28,8 @@ export default class ProjectOpen extends BaseCommand {
     static examples = [
         '<%= config.bin %> <%= command.id %>',
         '<%= config.bin %> <%= command.id %> My-Super-Project',
-        '<%= config.bin %> open My-Super-Project --with terminal',
-        '<%= config.bin %> open -w browser -w ide',
+        '<%= config.bin %> <%= command.id %> My-Super-Project --with terminal',
+        '<%= config.bin %> open -w browser ide',
     ];
 
     public async run(): Promise<void> {
