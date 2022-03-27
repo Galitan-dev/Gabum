@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 
 const oclif = require('@oclif/core')
+const os = require('os');
+
+process.env.GABUM_CONFIG_PATH = os.homedir() + '/.config/gabum';
 
 oclif.run().then(require('@oclif/core/flush')).catch(require('@oclif/core/handle'))

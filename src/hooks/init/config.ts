@@ -3,8 +3,8 @@ import { copyFileSync, statSync } from 'fs';
 import PATH from 'path';
 import { Config } from '../../config';
 
-export default <Hook<'prerun'>>async function (opts) {
-    const configPath = opts.config.home + '/.config/gabum/config.yml';
+export default <Hook<'init'>>async function () {
+    const configPath = process.env.GABUM_CONFIG_PATH + '/config.yml';
 
     try {
         statSync(configPath);

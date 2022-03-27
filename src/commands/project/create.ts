@@ -112,6 +112,6 @@ export default class ProjectCreate extends BaseCommand {
         this.l.info('The project was successfully created!');
         this.nl;
 
-        this.config.runCommand('project:open', [project.infos.name]);
+        this.config.runCommand('project:open', [project.def.name]);
     }
 }

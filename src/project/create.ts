@@ -68,7 +68,7 @@ export async function create(project: Project) {
                     const filePath = PATH.join(project.path, '.gabum/init.js');
                     // eslint-disable-next-line @typescript-eslint/no-var-requires
                     const mod = require(filePath);
-                    return mod(project.infos, project.path, {
+                    return mod(project.def, project.path, {
                         request,
                         Listr,
                         Observable,
@@ -97,11 +97,11 @@ export async function create(project: Project) {
                                 await shell.exec(
                                     [
                                         'gh repo create',
-                                        JSON.stringify(project.infos.name),
+                                        JSON.stringify(project.def.name),
                                         '--description',
-                                        JSON.stringify(project.infos.description),
+                                        JSON.stringify(project.def.description),
                                         JSON.stringify(
-                                            project.infos.private ? '--private' : '--public'
+                                            project.def.private ? '--private' : '--public'
                                         ),
                                         '--source',
                                         JSON.stringify(project.path),
@@ -114,7 +114,7 @@ export async function create(project: Project) {
                             title: 'Linking local repository to GitHub',
                             async task() {
                                 await shell.exec(
-                                    `git remote add origin https://github.com/${project.infos.author}/${project.infos.name}.git`,
+                                    `git remote add origin https://github.com/${project.def.author}/${project.def.name}.git`,
                                     {
                                         cwd: project.path,
                                     }

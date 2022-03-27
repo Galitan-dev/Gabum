@@ -1,10 +1,11 @@
-export declare interface ProjectInfos {
+export declare interface ProjectDef {
     name: string;
     author: string;
     description: string;
     private: boolean;
     template: TemplateId;
     license: ProjectLicense;
+    path?: string;
 }
 
 export declare type ProjectType =
