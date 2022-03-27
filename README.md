@@ -283,7 +283,7 @@ Project Link: [https://github.com/Galitan-dev/Gabum](https://github.com/Galitan-
 [issues-url]: https://github.com/Galitan-dev/Gabum/issues
 [license-shield]: https://img.shields.io/github/license/Galitan-dev/Gabum.svg?style=for-the-badge
 [license-url]: https://github.com/Galitan-dev/Gabum/blob/main/LICENSE
-[contributinh-url]: https://github.com/Galitan-dev/Gabum/blob/main/CONTRIBUTING.md
+[contributinh-url]: https://github.com/Galitan-dev/Gabum/blob/main/docs/CONTRIBUTING.md
 [product-screenshot]: images/screenshot.png
 [pr-shield]: https://img.shields.io/github/issues-pr/galitan-dev/gabum?style=for-the-badge
 [pr-url]: https://github.com/Galitan-dev/Gabum/pulls

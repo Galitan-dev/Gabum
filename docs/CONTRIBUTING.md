@@ -38,7 +38,7 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 ## Code of Conduct
 
 This project and everyone participating in it is governed by the
-[Gabum Code of Conduct](https://github.com/Galitan-dev/Gabumblob/master/CODE_OF_CONDUCT.md).
+[Gabum Code of Conduct](https://github.com/Galitan-dev/Gabum/blob/main/docs/CODE_OF_CONDUCT.md).
 By participating, you are expected to uphold this code. Please report unacceptable behavior
 to [<Galitan#8839](https://discord.com/channels/@me/572442722057715722/).
 
