@@ -1,6 +1,4 @@
 import chalk from 'chalk';
-import Conf from 'conf';
-import PATH from 'path';
 import request from 'superagent';
 import BaseCommand from '../../base-command';
 import Project from '../../project';
@@ -8,20 +6,13 @@ import Template from '../../project/template';
 import licenses from '../../res/licenses.json';
 import { ProjectLicense, TemplateId } from '../../types/project';
 
-const config = new Conf();
-
 export default class ProjectCreate extends BaseCommand {
     static description = 'Create a new project';
-    static aliases = ['create'];
+    static aliases = ['create', 'new'];
 
     static examples = ['<%= config.bin %> <%= command.id %>', '<%= config.bin %> create'];
 
     public async run(): Promise<void> {
-        const homedir = this.config.home;
-        const projectDir = <string>(
-            config.get('project-dir', PATH.join(homedir, 'Documents/Development'))
-        );
-
         this.l.info("It's a great day to start a new project!");
         this.l.print(chalk.blue.italic('\nWhat is the new project about?'));
 
@@ -33,6 +24,8 @@ export default class ProjectCreate extends BaseCommand {
             validate: (value) =>
                 !projects.some((p) => p.def.name === value) || 'This project already exists!',
         });
+
+        if (!name) return;
 
         const description = await this.textInput('Project Description', {
             min: [10, 'Please make an effort!'],

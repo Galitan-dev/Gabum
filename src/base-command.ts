@@ -46,7 +46,8 @@ export default abstract class BaseCommand extends Command {
             initial: options?.initial,
             async validate(value: string) {
                 return await validateAllAsync(
-                    options?.validateAsync?.bind(null, value),
+                    options?.validateAsync?.bind(null, value) ?? // eslint-disable-next-line prettier/prettier
+                    options?.validate?.bind(null, value),
                     [
                         options?.min,
                         (min) => value.length >= <number>min || `Mininum text length is ${min}`,

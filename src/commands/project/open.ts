@@ -48,7 +48,7 @@ export default class ProjectOpen extends BaseCommand {
             }
         }
 
-        const projects = Project.list(this.conf);
+        const projects = Project.list();
         let project: Project;
 
         if (args.project) {
