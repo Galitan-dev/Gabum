@@ -2,7 +2,6 @@ import chalk from 'chalk';
 import Conf from 'conf';
 import fs from 'fs';
 import PATH from 'path';
-import shell from 'shelljs';
 import request from 'superagent';
 import BaseCommand from '../../base-command';
 import Project from '../../project';
@@ -113,36 +112,6 @@ export default class ProjectCreate extends BaseCommand {
         this.l.info('The project was successfully created!');
         this.nl;
 
-        const actions = await this.select<'ide' | 'browse' | 'terminal'>(
-            'With what do you want to open this project?',
-            {
-                'Open in favorite IDE': 'ide',
-                'Open in Browser': 'browse',
-                'Open in a new Terminal': 'terminal',
-            },
-            { multiple: true }
-        );
-
-        if (actions.includes('ide')) {
-            const cmd = config.get('ide-command');
-            if (!cmd) this.l.warn("Oups! you didn't configured an ide command !");
-            else
-                await shell.exec(<string>cmd, {
-                    cwd: project.path,
-                });
-        }
-
-        if (actions.includes('browse')) {
-            await shell.exec('gh browse', { cwd: project.path });
-        }
-
-        if (actions.includes('terminal')) {
-            const cmd = config.get('terminal-command');
-            if (!cmd) this.l.warn("Oups! you didn't configured a terminal command !");
-            else
-                await shell.exec(<string>cmd, {
-                    cwd: project.path,
-                });
-        }
+        this.config.runCommand('project:open', [project.infos.name]);
     }
 }
