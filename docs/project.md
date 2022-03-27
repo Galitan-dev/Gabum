@@ -3,9 +3,8 @@
 
 Project Management
 
-- [`gabum project`](#gabum-project)
-  - [`gabum project create`](#gabum-project-create)
-  - [`gabum project open [PROJECT]`](#gabum-project-open-project)
+* [`gabum project create`](#gabum-project-create)
+* [`gabum project open [PROJECT]`](#gabum-project-open-project)
 
 ## `gabum project create`
 
@@ -20,6 +19,7 @@ DESCRIPTION
 
 ALIASES
   $ gabum create
+  $ gabum new
 
 EXAMPLES
   $ gabum project create
@@ -54,5 +54,5 @@ EXAMPLES
 
   $ gabum project open My-Super-Project --with terminal
 
-  $ gabum open -w browser -w ide
+  $ gabum open -w browser ide
 ```
