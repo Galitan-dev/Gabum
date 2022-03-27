@@ -1,10 +1,8 @@
 import { Flags } from '@oclif/core';
 import { Arg } from '@oclif/core/lib/interfaces';
 import chalk from 'chalk';
-import { statSync } from 'fs';
-import PATH from 'path';
-import shell from 'shelljs';
 import BaseCommand from '../../base-command';
+import Project from '../../project';
 
 export default class ProjectOpen extends BaseCommand {
     static description = 'Open a project';
@@ -50,27 +48,24 @@ export default class ProjectOpen extends BaseCommand {
             }
         }
 
-        const projectDir = this.conf.projectDir;
+        const projects = Project.list(this.conf);
+        let project: Project;
 
-        const projectName =
-            args.project ||
-            (await this.textInput('Which project do you want to open?', {
-                validate(value) {
-                    try {
-                        statSync(PATH.join(projectDir, value, '.gabum'));
-                        return true;
-                    } catch (err) {
-                        return 'This is not a gabum project !';
-                    }
-                },
-            }));
-
-        const projectPath = PATH.join(projectDir, projectName);
-        try {
-            statSync(PATH.join(projectPath, '.gabum'));
-        } catch (err) {
-            this.l.error('This is not a gabum project !');
-            this.exit(1);
+        if (args.project) {
+            const p = projects.find((p) => p.def.name === args.project);
+            if (!p) return this.l.error('This project does not exist !');
+            project = p;
+        } else {
+            project = <Project>await this.select(
+                'Which project do you want to open?',
+                projects.map((p) => ({
+                    title: p.def.name,
+                    value: p,
+                    description: p.def.description,
+                    // TODO color: p.template.color,
+                })),
+                { autocomplete: true }
+            );
         }
 
         const actions =
@@ -85,26 +80,6 @@ export default class ProjectOpen extends BaseCommand {
                 { multiple: true }
             ));
 
-        if (actions.includes('ide')) {
-            const cmd = this.conf.commands.ide;
-            if (!cmd) this.l.warn("Oups! you didn't configured an ide command !");
-            else
-                await shell.exec(<string>cmd, {
-                    cwd: projectPath,
-                });
-        }
-
-        if (actions.includes('browser')) {
-            await shell.exec('gh browse', { cwd: projectPath });
-        }
-
-        if (actions.includes('terminal')) {
-            const cmd = this.conf.commands.terminal;
-            if (!cmd) this.l.warn("Oups! you didn't configured a terminal command !");
-            else
-                await shell.exec(<string>cmd, {
-                    cwd: projectPath,
-                });
-        }
+        project.open(actions);
     }
 }
