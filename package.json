@@ -9,7 +9,6 @@
   "bugs": "https://github.com/oclif/hello-world/issues",
   "dependencies": {
     "@oclif/core": "^1",
-    "@oclif/plugin-commands": "^2.1.0",
     "@oclif/plugin-help": "^5.1.11",
     "@oclif/plugin-not-found": "^2.3.1",
     "@oclif/plugin-which": "^2.1.0",
@@ -71,8 +70,7 @@
     "plugins": [
       "@oclif/plugin-help",
       "@oclif/plugin-not-found",
-      "@oclif/plugin-which",
-      "@oclif/plugin-commands"
+      "@oclif/plugin-which"
     ],
     "topicSeparator": " ",
     "topics": {
