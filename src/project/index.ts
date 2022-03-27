@@ -39,9 +39,6 @@ export default class Project {
     constructor(def: ProjectDef, conf: Config) {
         def.path = def.path ?? PATH.join(conf.projectDir, def.name);
         this.def = <ProjectDef & { path: string }>def;
-
-        Project.definitions.push(this.def);
-        Project.saveDefinitions();
     }
 
     public get template() {
@@ -50,6 +47,8 @@ export default class Project {
 
     public async create() {
         await create(this);
+        Project.definitions.push(this.def);
+        Project.saveDefinitions();
     }
 
     public async open(actions: string[]) {
