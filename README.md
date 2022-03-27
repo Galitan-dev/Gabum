@@ -163,10 +163,10 @@ USAGE
 ...
 ```
 
+### Other commands
 I'll yet Oclif explain you how the other commands work.
 
 <!-- commands -->
-# Command Topics
 
 * [`gabum config`](docs/config.md) - Configure Gabum CLI
 * [`gabum help`](docs/help.md) - Display help for gabum.
@@ -200,9 +200,9 @@ I'll yet Oclif explain you how the other commands work.
  - [x] Template Definitions
    - [x] List
    - [x] Prompter
- - [ ] Project Definitions Storage
+ - [x] Project Definitions Storage
    - [x] In User Configs
-   - [ ] In Project
+   - [x] In Project
  - [ ] More Templates
    - [ ] Blank
    - [ ] Simple TS
