@@ -166,7 +166,7 @@ USAGE
 I'll yet Oclif explain you how the other commands work.
 
 <!-- commands -->
-### Oher commands
+# Command Topics
 
 * [`gabum config`](docs/config.md) - Configure Gabum CLI
 * [`gabum help`](docs/help.md) - Display help for gabum.
