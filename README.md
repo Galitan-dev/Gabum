@@ -166,7 +166,7 @@ USAGE
 I'll yet Oclif explain you how the other commands work.
 
 <!-- commands -->
-# Command Topics
+### Oher commands
 
 * [`gabum config`](docs/config.md) - Configure Gabum CLI
 * [`gabum help`](docs/help.md) - Display help for gabum.
@@ -201,7 +201,7 @@ I'll yet Oclif explain you how the other commands work.
    - [x] List
    - [x] Prompter
  - [ ] Project Definitions Storage
-   - [ ] In User Configs
+   - [x] In User Configs
    - [ ] In Project
  - [ ] More Templates
    - [ ] Blank
