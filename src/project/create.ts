@@ -221,6 +221,7 @@ function generateCommunityStandards(project: Project) {
                         '`github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`',
                         '`twitter_handle`, `linkedin_username`, `email_client`, `email`'
                     )
+                    .replace('* []()', '* [Gabum](https://github.com/Galitan-dev/Gabum)')
                     .replace(/github_username/g, project.def.author)
                     .replace(/repo_name/g, project.def.name)
                     .replace(/project_title/g, project.def.name)
