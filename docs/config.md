@@ -28,4 +28,4 @@ EXAMPLES
   $ gabum settings
 ```
 
-_See code: [dist/commands/config.ts](https://github.com/Galitan-dev/Gabum/blob/v1.6.4/dist/commands/config.ts)_
+_See code: [dist/commands/config.ts](https://github.com/Galitan-dev/Gabum/blob/v1.6.5/dist/commands/config.ts)_
