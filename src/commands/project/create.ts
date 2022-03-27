@@ -1,6 +1,5 @@
 import chalk from 'chalk';
 import Conf from 'conf';
-import fs from 'fs';
 import PATH from 'path';
 import request from 'superagent';
 import BaseCommand from '../../base-command';
@@ -26,12 +25,13 @@ export default class ProjectCreate extends BaseCommand {
         this.l.info("It's a great day to start a new project!");
         this.l.print(chalk.blue.italic('\nWhat is the new project about?'));
 
+        const projects = Project.list();
         const name = await this.textInput('Project Name', {
             min: [3, 'Oh, you have really no imagination!'],
             max: [30, 'Okay, calm down with your keyboard!'],
             match: [/^[a-zA-Z\d-_]+$/g, 'What a strange name!'],
             validate: (value) =>
-                !fs.existsSync(PATH.join(projectDir, value)) || 'This project already exists!',
+                !projects.some((p) => p.def.name === value) || 'This project already exists!',
         });
 
         const description = await this.textInput('Project Description', {
@@ -95,17 +95,14 @@ export default class ProjectCreate extends BaseCommand {
             this.exit(0);
         }
 
-        const project = new Project(
-            {
-                name,
-                description,
-                private: isPrivate,
-                license,
-                author,
-                template,
-            },
-            this.conf
-        );
+        const project = new Project({
+            name,
+            description,
+            private: isPrivate,
+            license,
+            author,
+            template,
+        });
 
         this.nl.info("Okay, I'm creating the project...");
         await project.create();

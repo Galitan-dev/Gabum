@@ -3,7 +3,7 @@ import PATH from 'path';
 import shell from 'shelljs';
 import { parse, stringify } from 'yaml';
 import { Logger } from '../base-command';
-import config, { Config } from '../config';
+import config from '../config';
 import { ProjectDef } from '../types/project';
 import { create } from './create';
 import Template from './template';
@@ -24,8 +24,8 @@ export default class Project {
         writeFileSync(this.path, stringify(this.definitions), 'utf-8');
     }
 
-    public static list(conf: Config): Project[] {
-        return this.definitions.map((def) => new Project(def, conf));
+    public static list(): Project[] {
+        return this.definitions.map((def) => new Project(def));
     }
 
     public readonly def: ProjectDef & { path: string };
@@ -36,8 +36,8 @@ export default class Project {
     private readonly l = new Logger();
     private readonly conf = config();
 
-    constructor(def: ProjectDef, conf: Config) {
-        def.path = def.path ?? PATH.join(conf.projectDir, def.name);
+    constructor(def: ProjectDef) {
+        def.path = def.path ?? PATH.join(this.conf.projectDir, def.name);
         this.def = <ProjectDef & { path: string }>def;
     }
 
