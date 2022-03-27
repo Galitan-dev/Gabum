@@ -45,8 +45,8 @@ export default abstract class BaseCommand extends Command {
             message: chalk.italic.blue(msg),
             initial: options?.initial,
             async validate(value: string) {
-                return await validateAllAndCallback(
-                    options?.validate?.bind(null, value),
+                return await validateAllAsync(
+                    options?.validateAsync?.bind(null, value),
                     [
                         options?.min,
                         (min) => value.length >= <number>min || `Mininum text length is ${min}`,
@@ -66,6 +66,7 @@ export default abstract class BaseCommand extends Command {
                 const value = <string>(<unknown>this._value);
                 this.rendered = (
                     validateAll(
+                        options?.validate?.bind(null, value),
                         [options?.min, (min) => value.length >= <number>min || ''],
                         [options?.max, (max) => value.length <= <number>max || ''],
                         [options?.match, (regexp) => value.match(<RegExp>regexp) !== null || '']
@@ -87,6 +88,7 @@ export default abstract class BaseCommand extends Command {
             message: chalk.italic.blue(msg),
             validate(value: number) {
                 return validateAll(
+                    undefined,
                     [options?.min, (min) => value >= <number>min || `Mininum number is ${min}`],
                     [options?.max, (max) => value <= <number>max || `Maximum number is ${max}`]
                 );
@@ -95,6 +97,7 @@ export default abstract class BaseCommand extends Command {
                 const value = <number>(<unknown>this._value);
                 this.rendered = (
                     validateAll(
+                        undefined,
                         [options?.min, (min) => value >= <number>min || ''],
                         [options?.max, (max) => value <= <number>max || '']
                     ) === true
@@ -198,11 +201,11 @@ function validate<T extends number | RegExp>(
     return Array.isArray(validator) ? validator[1] : result;
 }
 
-async function validateAllAndCallback(
+async function validateAllAsync(
     callback?: () => string | true | Promise<string | true>,
     ...handlers: ValidatorHandler<number | RegExp>[]
 ): Promise<string | true> {
-    const res = validateAll(...handlers);
+    const res = validateAll(undefined, ...handlers);
     if (typeof res === 'string') return res;
     if (callback) {
         return await callback();
@@ -210,10 +213,16 @@ async function validateAllAndCallback(
     return true;
 }
 
-function validateAll(...handlers: ValidatorHandler<number | RegExp>[]): string | true {
+function validateAll(
+    callback?: () => string | true,
+    ...handlers: ValidatorHandler<number | RegExp>[]
+) {
     for (const [validator, handler] of handlers) {
         const res = validate(validator, handler);
         if (typeof res === 'string') return res;
+    }
+    if (callback) {
+        return callback();
     }
     return true;
 }
@@ -226,7 +235,7 @@ export class Logger {
     log(msg: string, level: LogLevel = 'info', ...args: unknown[]): void {
         switch (level) {
             case 'info':
-                console.info(chalk.blue(chalk.bold('[INFO]: ') + msg), ...args);
+                console.info(chalk.cyan(chalk.bold('[INFO]: ') + msg), ...args);
                 break;
             case 'warn':
                 console.warn(chalk.yellow(chalk.bold('[WARN]: ') + msg), ...args);

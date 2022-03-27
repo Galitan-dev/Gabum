@@ -92,7 +92,7 @@ export default class Config extends BaseCommand {
                             break;
                         case 'author':
                             config.author = await this.textInput('Github Username', {
-                                async validate(input: string): Promise<string | true> {
+                                async validateAsync(input: string): Promise<string | true> {
                                     try {
                                         const res = await request
                                             .get('https://api.github.com/users/' + input)

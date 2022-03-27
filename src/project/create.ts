@@ -51,7 +51,7 @@ export async function create(project: Project) {
                             title: 'Extracting the template from the archive',
                             async task() {
                                 await zip.extract(
-                                    '', // `templates/${project.infos.type}/${project.infos.language}`
+                                    'templates/' + project.template.id,
                                     templateArchive,
                                     project.path
                                 );

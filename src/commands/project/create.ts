@@ -74,7 +74,7 @@ export default class ProjectCreate extends BaseCommand {
         const version = this.config.version;
         if (!author) {
             author = await this.textInput('Github Username', {
-                async validate(input: string): Promise<string | true> {
+                async validateAsync(input: string): Promise<string | true> {
                     try {
                         const res = await request
                             .get('https://api.github.com/users/' + input)
@@ -91,18 +91,26 @@ export default class ProjectCreate extends BaseCommand {
             this.conf.save();
         }
 
-        const project = new Project({
-            name,
-            description,
-            private: isPrivate,
-            license,
-            author,
-            template,
-        });
+        if (!(await this.confirm('Confirm Project Creation ?', true))) {
+            this.nl.info('Okay, no problem.');
+            this.exit(0);
+        }
+
+        const project = new Project(
+            {
+                name,
+                description,
+                private: isPrivate,
+                license,
+                author,
+                template,
+            },
+            this.conf
+        );
 
         this.nl.info("Okay, I'm creating the project...");
         await project.create();
-        this.l.info('The project was created successfully!');
+        this.l.info('The project was successfully created!');
         this.nl;
 
         const actions = await this.select<'ide' | 'browse' | 'terminal'>(
