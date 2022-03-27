@@ -1,13 +1,10 @@
 import { Flags } from '@oclif/core';
 import { Arg } from '@oclif/core/lib/interfaces';
 import chalk from 'chalk';
-import Conf from 'conf';
 import { statSync } from 'fs';
 import PATH from 'path';
 import shell from 'shelljs';
 import BaseCommand from '../../base-command';
-
-const config = new Conf();
 
 export default class ProjectOpen extends BaseCommand {
     static description = 'Open a project';
@@ -53,10 +50,7 @@ export default class ProjectOpen extends BaseCommand {
             }
         }
 
-        const homedir = this.config.home;
-        const projectDir = <string>(
-            config.get('project-dir', PATH.join(homedir, 'Documents/Development'))
-        );
+        const projectDir = this.conf.projectDir;
 
         const projectName =
             args.project ||
@@ -92,7 +86,7 @@ export default class ProjectOpen extends BaseCommand {
             ));
 
         if (actions.includes('ide')) {
-            const cmd = config.get('ide-command');
+            const cmd = this.conf.commands.ide;
             if (!cmd) this.l.warn("Oups! you didn't configured an ide command !");
             else
                 await shell.exec(<string>cmd, {
@@ -105,7 +99,7 @@ export default class ProjectOpen extends BaseCommand {
         }
 
         if (actions.includes('terminal')) {
-            const cmd = config.get('terminal-command');
+            const cmd = this.conf.commands.terminal;
             if (!cmd) this.l.warn("Oups! you didn't configured a terminal command !");
             else
                 await shell.exec(<string>cmd, {
