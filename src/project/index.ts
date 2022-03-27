@@ -54,11 +54,9 @@ export default class Project {
     public async open(actions: string[]) {
         if (actions.includes('ide')) {
             const cmd = this.conf.commands.ide;
-            if (!cmd) this.l.warn("Oups! you didn't configured an ide command !");
-            else
-                await shell.exec(<string>cmd, {
-                    cwd: this.path,
-                });
+            await shell.exec(<string>cmd, {
+                cwd: this.path,
+            });
         }
 
         if (actions.includes('browser')) {
@@ -67,11 +65,10 @@ export default class Project {
 
         if (actions.includes('terminal')) {
             const cmd = this.conf.commands.terminal;
-            if (!cmd) this.l.warn("Oups! you didn't configured a terminal command !");
-            else
-                await shell.exec(<string>cmd, {
-                    cwd: this.path,
-                });
+            this.l.log(cmd);
+            await shell.exec(<string>cmd, {
+                cwd: this.path,
+            });
         }
     }
 }

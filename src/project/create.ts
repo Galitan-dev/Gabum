@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import shell from 'shelljs';
 import { Writable } from 'stream';
 import request from 'superagent';
+import { stringify } from 'yaml';
 import Project from '.';
 import ProgressBar from '../helpers/progress';
 import * as zip from '../helpers/zip';
@@ -19,6 +20,13 @@ export async function create(project: Project) {
             {
                 title: 'Downloading the template',
                 task: downloadTemplate.bind(null, project),
+                options: {
+                    showTimer: true,
+                },
+            },
+            {
+                title: 'Generating Gabum Files',
+                task: generateGabumFiles.bind(null, project),
                 options: {
                     showTimer: true,
                 },
@@ -98,6 +106,21 @@ function downloadTemplate(project: Project) {
                     'templates/' + project.template.id,
                     templateArchive,
                     project.path
+                );
+            },
+        },
+    ]);
+}
+
+function generateGabumFiles(project: Project) {
+    return new Listr([
+        {
+            title: 'Save Project Definition',
+            task() {
+                writeFileSync(
+                    PATH.join(project.path, '.gabum/project.yml'),
+                    stringify(project.def),
+                    'utf8'
                 );
             },
         },
