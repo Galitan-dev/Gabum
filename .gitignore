@@ -10,3 +10,4 @@ node_modules
 /.vscode
 /.VSCodeCounter
 /tsconfig.tsbuildinfo
+.DS_Store
