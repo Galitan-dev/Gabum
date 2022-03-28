@@ -4,6 +4,7 @@
 Project Management
 
 * [`gabum project create`](#gabum-project-create)
+* [`gabum project delete [PROJECT]`](#gabum-project-delete-project)
 * [`gabum project open [PROJECT]`](#gabum-project-open-project)
 
 ## `gabum project create`
@@ -25,6 +26,26 @@ EXAMPLES
   $ gabum project create
 
   $ gabum create
+```
+
+## `gabum project delete [PROJECT]`
+
+Delete a project
+
+```
+USAGE
+  $ gabum project delete [PROJECT]
+
+ARGUMENTS
+  PROJECT  The project to delete
+
+DESCRIPTION
+  Delete a project
+
+EXAMPLES
+  $ gabum project delete
+
+  $ gabum project delete My-Bad-Project
 ```
 
 ## `gabum project open [PROJECT]`

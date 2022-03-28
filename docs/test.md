@@ -1,23 +1,23 @@
 `gabum test`
 ============
 
-test command
+Test command
 
 * [`gabum test`](#gabum-test)
 
 ## `gabum test`
 
-test command
+Test command
 
 ```
 USAGE
   $ gabum test
 
 DESCRIPTION
-  test command
+  Test command
 
 EXAMPLES
   $ gabum test
 ```
 
-_See code: [dist/commands/test.ts](https://github.com/Galitan-dev/Gabum/blob/v1.7.1/dist/commands/test.ts)_
+_See code: [dist/commands/test.ts](https://github.com/Galitan-dev/Gabum/blob/v1.7.2/dist/commands/test.ts)_
