@@ -1,6 +1,6 @@
 - name: Blank
   id: blank
-  description: A blank project with no specific languages
+  description: A blank project with no specific language
 - name: JavaScript
   id: js
   description: A simple <yellow>JavaScript</yellow> template for small projects
