@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync, rmSync, writeFileSync } from 'fs';
 import PATH from 'path';
 import shell from 'shelljs';
 import { parse, stringify } from 'yaml';
@@ -53,8 +53,7 @@ export default class Project {
 
     public async open(actions: string[]) {
         if (actions.includes('ide')) {
-            const cmd = this.conf.commands.ide;
-            await shell.exec(<string>cmd, {
+            await shell.exec(this.conf.commands.ide, {
                 cwd: this.path,
             });
         }
@@ -64,11 +63,16 @@ export default class Project {
         }
 
         if (actions.includes('terminal')) {
-            const cmd = this.conf.commands.terminal;
-            this.l.log(cmd);
-            await shell.exec(<string>cmd, {
+            await shell.exec(this.conf.commands.terminal, {
                 cwd: this.path,
             });
         }
+    }
+
+    public async delete() {
+        await shell.exec('gh repo delete ' + this.def.author + '/' + this.def.name + ' --confirm');
+        rmSync(this.path, { recursive: true });
+        Project.definitions = Project.definitions.filter((p) => p.name !== this.def.name);
+        Project.saveDefinitions();
     }
 }

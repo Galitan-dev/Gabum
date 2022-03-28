@@ -2,7 +2,7 @@ import chalk from 'chalk';
 import BaseCommand from '../base-command';
 
 export default class Test extends BaseCommand {
-    static description = 'test command';
+    static description = 'Test command';
 
     static examples = ['<%= config.bin %> <%= command.id %>'];
 
