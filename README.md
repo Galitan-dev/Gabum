@@ -204,7 +204,7 @@ I'll yet Oclif explain you how the other commands work.
    - [x] In User Configs
    - [x] In Project
  - [ ] More Templates
-   - [ ] Blank
+   - [x] Blank
    - [x] Simple JS
    - [ ] Simple TS
    - [ ] Discord JS
