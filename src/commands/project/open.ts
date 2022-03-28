@@ -62,7 +62,6 @@ export default class ProjectOpen extends BaseCommand {
                     title: p.def.name,
                     value: p,
                     description: p.def.description,
-                    // TODO color: p.template.color,
                 })),
                 { autocomplete: true }
             );

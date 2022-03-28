@@ -203,6 +203,7 @@ I'll yet Oclif explain you how the other commands work.
  - [x] Project Definitions Storage
    - [x] In User Configs
    - [x] In Project
+ - [ ] Delete Command
  - [ ] More Templates
    - [x] Blank
    - [x] Simple JS
