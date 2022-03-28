@@ -205,11 +205,17 @@ I'll yet Oclif explain you how the other commands work.
    - [x] In Project
  - [ ] More Templates
    - [ ] Blank
+   - [x] Simple JS
    - [ ] Simple TS
-   - [ ] CLI (JS/TS) (With Oclif)
-   - [ ] Discord (JS/TS/Rust)
+   - [ ] Discord JS
+   - [ ] Discord TS
+   - [ ] CLI JS
+   - [ ] CLI TS
+   - [ ] CLI Oclif
+   - [ ] API JS
+   - [ ] API TS
+   - [ ] API Adonis
    - [ ] Website
-   - [ ] API (JS/TS) (With Adonis)
    - [ ] VueJs
    - [ ] ReactJs
    - [ ] Find Ideas
