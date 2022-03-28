@@ -21,7 +21,7 @@
 
 ### NodeJS ###
 
-node_module/*
+node_modules/*
 
 ### OS Files ###
 .DS_Store

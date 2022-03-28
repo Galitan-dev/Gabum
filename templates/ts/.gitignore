@@ -21,7 +21,7 @@
 
 ### NodeJS ###
 
-node_module/*
+node_modules/*
 dist
 
 ### OS Files ###
