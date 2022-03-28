@@ -1,0 +1,26 @@
+{
+    "name": "--project--",
+    "description": "--description--",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "--license--",
+    "private": "--private--",
+    "author": {
+        "name": "--author--",
+        "url": "https://github.com/--author--"
+    },
+    "repository": "https://github.com/--author--/--project--",
+    "bugs": "https://github.com/--author--/--project--/issues",
+    "homepage": "https://github.com/--author--/--project--",
+    "scripts": {
+        "build": "tsc",
+        "start": "node dist/index.js",
+        "dev": "nodemon src/index.ts"
+    },
+    "devDependencies": {
+        "@types/node": "^17.0.23",
+        "nodemon": "^2.0.15",
+        "ts-node": "^10.7.0",
+        "typescript": "^4.6.3"
+    }
+}

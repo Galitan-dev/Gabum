@@ -206,7 +206,7 @@ I'll yet Oclif explain you how the other commands work.
  - [ ] More Templates
    - [x] Blank
    - [x] Simple JS
-   - [ ] Simple TS
+   - [x] Simple TS
    - [ ] Discord JS
    - [ ] Discord TS
    - [ ] CLI JS

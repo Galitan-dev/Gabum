@@ -4,3 +4,6 @@
 - name: JavaScript
   id: js
   description: A simple <yellow>JavaScript</yellow> template for small projects
+- name: TypeScript
+  id: ts
+  description: A simple <blue>TypeScript</blue> template for small projects
