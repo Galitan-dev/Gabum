@@ -167,8 +167,6 @@ USAGE
 I'll yet Oclif explain you how the other commands work.
 
 <!-- commands -->
-# Command Topics
-
 * [`gabum config`](docs/config.md) - Configure Gabum CLI
 * [`gabum help`](docs/help.md) - Display help for gabum.
 * [`gabum project`](docs/project.md) - Project Management
@@ -204,7 +202,7 @@ I'll yet Oclif explain you how the other commands work.
  - [x] Project Definitions Storage
    - [x] In User Configs
    - [x] In Project
- - [ ] Delete Command
+ - [x] Delete Command
  - [ ] More Templates
    - [x] Blank
    - [x] Simple JS
