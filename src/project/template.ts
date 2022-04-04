@@ -28,7 +28,7 @@ export default class Template {
     get description() {
         return this.def.description
             .replace(/\*([^]*)\*/gi, chalk.italic('$1'))
-            .replace(/<((yellow|blue))>([^]*)<\/\1>/gi, (_, color: string, __, inner: string) =>
+            .replace(/<((yellow|blue|red))>([^]*)<\/\1>/gi, (_, color: string, __, inner: string) =>
                 (<{ [key: string]: (m: string) => string }>(<unknown>chalk))[color](inner)
             );
     }

@@ -7,3 +7,6 @@
 - name: TypeScript
   id: ts
   description: A simple <blue>TypeScript</blue> template for small projects
+- name: Rust Binary Package
+  id: rs
+  description: A simple <red>Rust</red> template for binary packages (i.e. games)
