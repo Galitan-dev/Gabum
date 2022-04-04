@@ -167,7 +167,6 @@ USAGE
 I'll yet Oclif explain you how the other commands work.
 
 <!-- commands -->
-# Command Topics
 
 * [`gabum config`](docs/config.md) - Configure Gabum CLI
 * [`gabum help`](docs/help.md) - Display help for gabum.
@@ -209,6 +208,8 @@ I'll yet Oclif explain you how the other commands work.
    - [x] Blank
    - [x] Simple JS
    - [x] Simple TS
+   - [x] Rust Binary Package
+   - [ ] Rust Library Package
    - [ ] Discord JS
    - [ ] Discord TS
    - [ ] CLI JS
