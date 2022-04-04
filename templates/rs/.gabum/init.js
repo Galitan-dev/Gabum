@@ -30,7 +30,7 @@ module.exports = function (infos, path, { Listr, Observable }) {
                 title: 'Installing project',
                 task: () =>
                     new Observable((observer) => {
-                        spawn('cargo build', { cwd: path })
+                        spawn('cargo', ['build'], { cwd: path })
                             .on('message', (msg) => observer.next(msg))
                             .on('error', (msg) => observer.error(msg))
                             .on('close', (code) =>
