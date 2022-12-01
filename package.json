@@ -10,7 +10,7 @@
   "dependencies": {
     "@oclif/core": "^1",
     "@oclif/plugin-help": "^5.1.11",
-    "@oclif/plugin-not-found": "^2.3.1",
+    "@oclif/plugin-not-found": "^2.3.9",
     "@oclif/plugin-which": "^2.1.0",
     "adm-zip": "^0.5.9",
     "detect-package-manager": "^2.0.1",
